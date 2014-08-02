@@ -1,0 +1,12 @@
+[submodule "common"]
+	path = common
+	url = https://github.com/datamicroscopes/common.git
+[submodule "mixturemodel"]
+	path = mixturemodel
+	url = https://github.com/datamicroscopes/mixturemodel.git
+[submodule "irm"]
+	path = irm
+	url = https://github.com/datamicroscopes/irm.git
+[submodule "kernels"]
+	path = kernels
+	url = https://github.com/datamicroscopes/kernels.git

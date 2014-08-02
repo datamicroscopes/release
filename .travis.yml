@@ -3,6 +3,8 @@ python:
   - '2.7'
 notifications:
   email: false
+  slack:
+    secure: "UvaKdilhLmefDk+cvmGWJI8y78Qhd4t1g/nhvENGtwcVstcnR/opnJajowVjMHlphNGaCON+6wdqeVTezMAjRNCTdMGK0nCthv0DdqcyCYFsl/1ddJJ0G6KYhBIPK5GxaYVTuvquipoUrelMfo8snevU44QdYB836JFZfHPAHf0="
 before_install:
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq

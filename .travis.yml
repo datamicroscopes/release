@@ -1,0 +1,28 @@
+language: python
+python:
+  - '2.7'
+notifications:
+  email: false
+before_install:
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq g++-4.8
+  - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+  - chmod +x miniconda.sh
+  - ./miniconda.sh -b
+  - export PATH=/home/travis/miniconda/bin:$PATH
+  - conda update --yes conda
+  - sudo rm -rf /dev/shm
+  - sudo ln -s /run/shm /dev/shm
+  - export CC=gcc-4.8
+  - export CXX=g++-4.8
+  - conda install --yes binstar conda-build
+  - conda config --add channels distributions
+  - conda config --add channels datamicroscopes
+  - git submodule init
+  - git submodule update
+  - printenv
+env:
+  - secure: "d5dwoI3NkH76ar9HqSBeiBj9XN/t+OTul2dXtUZ3zx5+tgQCAOx/rrf6IAe7+Rq2ZOeASh4z4sFCSjJQ3VXodB6hnpKtyLr3VfiMmvk+MXwyZyyv/WQVspznazGvA5jvMKLb4q/nVlyWTOoUOJggUbjzcFXpG2BUW8SVVMANoyw=" 
+script:
+  - python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project common

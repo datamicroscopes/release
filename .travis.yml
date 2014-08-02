@@ -23,7 +23,6 @@ before_install:
   - conda config --add channels datamicroscopes
   - git submodule init
   - git submodule update
-  - printenv
 env:
   - secure: "d5dwoI3NkH76ar9HqSBeiBj9XN/t+OTul2dXtUZ3zx5+tgQCAOx/rrf6IAe7+Rq2ZOeASh4z4sFCSjJQ3VXodB6hnpKtyLr3VfiMmvk+MXwyZyyv/WQVspznazGvA5jvMKLb4q/nVlyWTOoUOJggUbjzcFXpG2BUW8SVVMANoyw=" 
 install:

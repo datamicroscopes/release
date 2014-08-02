@@ -27,4 +27,8 @@ env:
 install:
   - echo "nothing to do"
 script:
+  # this order matters!
   - python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project common
+  - python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project mixturemodel
+  - python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project irm
+  - python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project kernels

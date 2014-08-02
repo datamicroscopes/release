@@ -16,7 +16,7 @@ before_install:
   - sudo ln -s /run/shm /dev/shm
   - export CC=gcc-4.8
   - export CXX=g++-4.8
-  - conda install --yes binstar conda-build
+  - conda install --yes binstar conda-build jinja2
   - conda config --add channels distributions
   - conda config --add channels datamicroscopes
   - git submodule init
@@ -24,5 +24,7 @@ before_install:
   - printenv
 env:
   - secure: "d5dwoI3NkH76ar9HqSBeiBj9XN/t+OTul2dXtUZ3zx5+tgQCAOx/rrf6IAe7+Rq2ZOeASh4z4sFCSjJQ3VXodB6hnpKtyLr3VfiMmvk+MXwyZyyv/WQVspznazGvA5jvMKLb4q/nVlyWTOoUOJggUbjzcFXpG2BUW8SVVMANoyw=" 
+install:
+  - echo "nothing to do"
 script:
   - python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project common

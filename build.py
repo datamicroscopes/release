@@ -2,6 +2,7 @@
 
 import sys
 import os
+import socket
 
 from argparse import ArgumentParser
 from subprocess import check_call, check_output
@@ -73,7 +74,10 @@ def main():
     bs = get_binstar()
     config = get_config()
     url = config.get('url', 'https://api.binstar.org')
-    token = bs.authenticate(args.username, args.password, 'binstar_client', url, created_with='')
+    token = bs.authenticate(
+        args.username, args.password,
+        'binstar_client:{}'.format(socket.gethostname()),
+        url, created_with='')
     if token is None:
         print >>sys.stderr, 'could not login'
         return 1

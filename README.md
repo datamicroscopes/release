@@ -5,7 +5,12 @@ Linux: [![Build Status](https://travis-ci.org/datamicroscopes/release.svg?branch
 Tools for building conda releases of datamicroscopes on both Linux and OS X.
 
 ### Building a new conda release
-Committers can build a new conda release by simplying updating the git submodule pointers and pushing to this repo. Travis CI takes care of the rest:
+Committers can build a new conda release by simplying updating the git submodule pointers and pushing to this repo. Travis CI takes care of the rest. When checkout out the repository for the first time, initialize the submodules with the following commands:
+    
+    $ git submodule init
+    $ git submodule update
+    
+Once the submodules are initialized, then bumping the pointers is simple:
 
     $ git submodule foreach git pull
     $ git commit -a -m "Create new conda release"

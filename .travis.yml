@@ -21,6 +21,9 @@ before_install:
   - conda install --yes binstar conda-build jinja2
   - conda config --add channels distributions
   - conda config --add channels datamicroscopes
+  - git config --global user.email "datamicroscopes.travis.builder@gmail.com"
+  - git config --global user.name "datamicroscopes-travis-builder"
+  - git config --global push.default simple
 env:
   global:
     - secure: "k1lj4j8iPn+bZXsbOolWZjUPkeUkFLOOA/L/Amjf8BH1+IxHlqNq8IwnynSKrPVRkDVMHpUY4WoK2+4/M1mFPyT7VMU7sL45oJy9wtZ9dz4FrTIRZny98lbWHOuRpf69v36/IpBeyX+krcJI4SLjuRpOsEoSJA+VA4hj7k25cX4="

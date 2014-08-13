@@ -22,8 +22,9 @@ before_install:
   - conda config --add channels distributions
   - conda config --add channels datamicroscopes
 env:
-  - secure: "k1lj4j8iPn+bZXsbOolWZjUPkeUkFLOOA/L/Amjf8BH1+IxHlqNq8IwnynSKrPVRkDVMHpUY4WoK2+4/M1mFPyT7VMU7sL45oJy9wtZ9dz4FrTIRZny98lbWHOuRpf69v36/IpBeyX+krcJI4SLjuRpOsEoSJA+VA4hj7k25cX4="
-  - secure: "m2LUlcPzgxsE9Ta1zlGqUCqanfn2JEgF4TKF/MeGPBQCtwneu1aq0tqNpSEr6FBNUCbqo5hWcOz5+T6L7uDuv+w59yA0shcY0xwrMBsptNhWfjCXtsiyQ8DhpJSbsdESj3brh+Je0cuJqsGXzrpFznI2L+qouTy+DLBp+baHcfM="
+  global:
+    - secure: "k1lj4j8iPn+bZXsbOolWZjUPkeUkFLOOA/L/Amjf8BH1+IxHlqNq8IwnynSKrPVRkDVMHpUY4WoK2+4/M1mFPyT7VMU7sL45oJy9wtZ9dz4FrTIRZny98lbWHOuRpf69v36/IpBeyX+krcJI4SLjuRpOsEoSJA+VA4hj7k25cX4="
+    - secure: "m2LUlcPzgxsE9Ta1zlGqUCqanfn2JEgF4TKF/MeGPBQCtwneu1aq0tqNpSEr6FBNUCbqo5hWcOz5+T6L7uDuv+w59yA0shcY0xwrMBsptNhWfjCXtsiyQ8DhpJSbsdESj3brh+Je0cuJqsGXzrpFznI2L+qouTy+DLBp+baHcfM="
 install:
   - echo "nothing to do"
 script:

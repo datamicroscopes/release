@@ -1,5 +1,5 @@
-microscopes.common.util
-=======================
+util
+====
 
 .. automodule:: microscopes.common.util
     :members:

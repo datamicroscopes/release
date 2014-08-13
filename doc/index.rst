@@ -13,8 +13,6 @@ Contents:
 
    microscopes.common.dataview
    microscopes.common.util
-   microscopes.common.random
-   microscopes.common.validator
    microscopes.mixture
    microscopes.irm
    microscopes.kernels

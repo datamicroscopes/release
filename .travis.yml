@@ -48,4 +48,4 @@ after_success:
   - cp -R doc/_build/html/* D/docs/latest
   - (cd D && git add docs/latest)
   - (cd D && git commit -m "autogen docs")
-  - (cd D && git push)
+  - (cd D && git push -q)

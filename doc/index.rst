@@ -13,6 +13,8 @@ Contents:
 
    microscopes.common.dataview
    microscopes.common.util
+   microscopes.common.query
+   microscopes.kernels.parallel
    microscopes.mixture
    microscopes.irm
    microscopes.kernels

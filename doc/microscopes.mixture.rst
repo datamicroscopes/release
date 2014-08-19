@@ -35,3 +35,17 @@ microscopes.mixture.model
     .. autofunction:: microscopes.mixture.model.deserialize
 
     .. autofunction:: microscopes.mixture.model.deserialize_fixed
+
+microscopes.mixture.runner
+--------------------------
+
+.. automodule:: microscopes.mixture.runner
+    :members:
+    :undoc-members:
+
+microscopes.mixture.query
+-------------------------
+
+.. automodule:: microscopes.mixture.query
+    :members:
+    :undoc-members:

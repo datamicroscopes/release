@@ -1,51 +1,55 @@
 language: python
 python:
-  - '2.7'
+- '2.7'
 notifications:
   email: false
   slack:
-    secure: "UvaKdilhLmefDk+cvmGWJI8y78Qhd4t1g/nhvENGtwcVstcnR/opnJajowVjMHlphNGaCON+6wdqeVTezMAjRNCTdMGK0nCthv0DdqcyCYFsl/1ddJJ0G6KYhBIPK5GxaYVTuvquipoUrelMfo8snevU44QdYB836JFZfHPAHf0="
+    secure: lWJsUXTtmQJarJdLBlBXJCkbS4ttYDaIFYtcisv81PZwkrOX2WAOzYsVYqN3T6496ANbVtFBiUHFcp6dyKMIp/GjUkrYGkTzNCmnEcJcj6fuFdDb2NvvEI4rt+qa56bwF1TquVP5BXzEnCrDFcRMqbs8TJWKtfbzWgiqVUtZbD0=
 before_install:
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq g++-4.8
-  - wget http://repo.continuum.io/miniconda/Miniconda-3.5.5-Linux-x86_64.sh -O miniconda.sh
-  - chmod +x miniconda.sh
-  - ./miniconda.sh -b
-  - export PATH=/home/travis/miniconda/bin:$PATH
-  - conda update --yes conda
-  - sudo rm -rf /dev/shm
-  - sudo ln -s /run/shm /dev/shm
-  - export CC=gcc-4.8
-  - export CXX=g++-4.8
-  - conda install --yes binstar conda-build jinja2
-  - conda config --add channels distributions
-  - conda config --add channels datamicroscopes
-  - git config --global user.email "datamicroscopes.travis.builder@gmail.com"
-  - git config --global user.name "datamicroscopes-travis-builder"
-  - git config --global push.default simple
+- sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+- sudo apt-get update -qq
+- sudo apt-get install -qq g++-4.8
+- wget http://repo.continuum.io/miniconda/Miniconda-3.5.5-Linux-x86_64.sh -O miniconda.sh
+- chmod +x miniconda.sh
+- "./miniconda.sh -b"
+- export PATH=/home/travis/miniconda/bin:$PATH
+- conda update --yes conda
+- sudo rm -rf /dev/shm
+- sudo ln -s /run/shm /dev/shm
+- export CC=gcc-4.8
+- export CXX=g++-4.8
+- conda install --yes binstar conda-build jinja2
+- conda config --add channels distributions
+- conda config --add channels datamicroscopes
+- git config --global user.email "datamicroscopes.travis.builder@gmail.com"
+- git config --global user.name "datamicroscopes-travis-builder"
+- git config --global push.default simple
 env:
   global:
-    - secure: "k1lj4j8iPn+bZXsbOolWZjUPkeUkFLOOA/L/Amjf8BH1+IxHlqNq8IwnynSKrPVRkDVMHpUY4WoK2+4/M1mFPyT7VMU7sL45oJy9wtZ9dz4FrTIRZny98lbWHOuRpf69v36/IpBeyX+krcJI4SLjuRpOsEoSJA+VA4hj7k25cX4="
-    - secure: "m2LUlcPzgxsE9Ta1zlGqUCqanfn2JEgF4TKF/MeGPBQCtwneu1aq0tqNpSEr6FBNUCbqo5hWcOz5+T6L7uDuv+w59yA0shcY0xwrMBsptNhWfjCXtsiyQ8DhpJSbsdESj3brh+Je0cuJqsGXzrpFznI2L+qouTy+DLBp+baHcfM="
+  - secure: k1lj4j8iPn+bZXsbOolWZjUPkeUkFLOOA/L/Amjf8BH1+IxHlqNq8IwnynSKrPVRkDVMHpUY4WoK2+4/M1mFPyT7VMU7sL45oJy9wtZ9dz4FrTIRZny98lbWHOuRpf69v36/IpBeyX+krcJI4SLjuRpOsEoSJA+VA4hj7k25cX4=
+  - secure: m2LUlcPzgxsE9Ta1zlGqUCqanfn2JEgF4TKF/MeGPBQCtwneu1aq0tqNpSEr6FBNUCbqo5hWcOz5+T6L7uDuv+w59yA0shcY0xwrMBsptNhWfjCXtsiyQ8DhpJSbsdESj3brh+Je0cuJqsGXzrpFznI2L+qouTy+DLBp+baHcfM=
 install:
-  - echo "nothing to do"
+- echo "nothing to do"
 script:
-  # this order matters!
-  - python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project common --remove-before-build
-  - python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project mixturemodel --remove-before-build
-  - python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project irm --remove-before-build
-  - python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project kernels --remove-before-build
+- python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project
+  common --remove-before-build
+- python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project
+  mixturemodel --remove-before-build
+- python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project
+  irm --remove-before-build
+- python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project
+  kernels --remove-before-build
 after_success:
-  # build sphinx docs and push to datamicroscopes.github.io
-  - conda install --yes microscopes-common microscopes-mixturemodel microscopes-irm microscopes-kernels
-  - conda install --yes sphinx pip
-  - which pip
-  - pip install numpydoc
-  - git clone "https://datamicroscopes-travis-builder:$GITHUB_PASSWORD@github.com/datamicroscopes/datamicroscopes.github.io" D
-  - (cd doc && make html)
-  - rm -rf D/docs/latest/*
-  - cp -R doc/_build/html/* D/docs/latest
-  - (cd D && git add docs/latest)
-  - (cd D && git commit -m "autogen docs")
-  - (cd D && git push -q)
+- conda install --yes microscopes-common microscopes-mixturemodel microscopes-irm
+  microscopes-kernels
+- conda install --yes sphinx pip
+- which pip
+- pip install numpydoc
+- git clone "https://datamicroscopes-travis-builder:$GITHUB_PASSWORD@github.com/datamicroscopes/datamicroscopes.github.io"
+  D
+- "(cd doc && make html)"
+- rm -rf D/docs/latest/*
+- cp -R doc/_build/html/* D/docs/latest
+- "(cd D && git add docs/latest)"
+- (cd D && git commit -m "autogen docs")
+- "(cd D && git push -q)"

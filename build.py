@@ -81,7 +81,7 @@ def main():
     if token is None:
         print >>sys.stderr, 'could not login'
         return 1
-    store_token(token)
+    store_token(token, args)
 
     for name in sorted(os.listdir(conda_recipes_dir)):
         build_and_publish(

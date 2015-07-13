@@ -268,8 +268,13 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
+<<<<<<< HEAD
   ('index', 'datamicroscopes.tex', u'datamicroscopes Documentation',
    u'Qadium', 'manual'),
+=======
+  ('index', 'datamicroscopes.tex', 'datamicroscopes Documentation',
+   'Qadium', 'manual'),
+>>>>>>> upstream/master
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -298,8 +303,13 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
+<<<<<<< HEAD
     ('index', 'datamicroscopes', u'datamicroscopes Documentation',
      [u'Qadium'], 1)
+=======
+    ('index', 'datamicroscopes', 'datamicroscopes Documentation',
+     ['Qadium'], 1)
+>>>>>>> upstream/master
 ]
 
 # If true, show URL addresses after external links.
@@ -312,8 +322,13 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
+<<<<<<< HEAD
   ('index', 'datamicroscopes', u'datamicroscopes Documentation',
    u'Qadium', 'datamicroscopes', 'One line description of project.',
+=======
+  ('index', 'datamicroscopes', 'datamicroscopes Documentation',
+   'Qadium', 'datamicroscopes', 'One line description of project.',
+>>>>>>> upstream/master
    'Miscellaneous'),
 ]
 

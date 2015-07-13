@@ -5,7 +5,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-datamicroscopes: Baysian nonparametric models in Python
+datamicroscopes: Bayesian nonparametric models in Python
 =================
 
 datamicroscopes is a library for inference in various Bayesian nonparametric models, such as the Dirichlet Process Mixture Model (DPMM) and the Infinite Relational Model (IRM).  Our API allows for the flexible choice of likelihood models for various datatypes.  To read more about the models in datamicroscopes, please refer to our :ref:`datatypes available <datatypes>`.

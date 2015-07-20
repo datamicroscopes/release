@@ -10,3 +10,6 @@
 [submodule "kernels"]
 	path = kernels
 	url = https://github.com/datamicroscopes/kernels.git
+[submodule "lda"]
+	path = lda
+	url = https://github.com/datamicroscopes/lda.git

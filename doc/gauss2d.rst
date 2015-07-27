@@ -1,5 +1,5 @@
 
-Inferring Gaussians wiht the Dirichlet Process Mixture Model
+Inferring Gaussians with the Dirichlet Process Mixture Model
 ============================================================
 
 --------------

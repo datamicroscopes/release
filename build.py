@@ -11,7 +11,7 @@ from binstar_client.utils import get_config, get_binstar, store_token
 def ensure_tool(name):
     check_call(['which', name])
 
-def build_and_publish(path, binstar, username):
+def build_and_publish(path, username):
     binfile = check_output(['conda', 'build', '--output', path])
     binfile = binfile.strip()
 
@@ -59,11 +59,8 @@ def main():
     binstar_login(args)
 
     for name in sorted(os.listdir(conda_recipes_dir)):
-        build_and_publish(
-            os.path.join(conda_recipes_dir, name),
-            None,
-            args.username)
-
+        conda_path = os.path.join(conda_recipes_dir, name)
+        build_and_publish(conda_path, args.username)
     return 0
 
 if __name__ == '__main__':

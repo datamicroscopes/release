@@ -12,6 +12,10 @@ def ensure_tool(name):
 
 
 def build_and_publish(path, args):
+    login_command = get_login_command(args)
+    print >>sys.stderr, "Test anaconda.org login:"
+    check_call(login_command)
+
     binfile = check_output(['conda', 'build', '--output', path])
     binfile = binfile.strip()
 
@@ -19,7 +23,7 @@ def build_and_publish(path, args):
     check_call(['conda', 'build', path])
 
     upload_command = "binstar upload --force {}".format(binfile)
-    login_command = get_login_command(args)
+
     login_and_upload_command = "{} && {}".format(login_command, upload_command)
     print >>sys.stderr, "Login to binstar and upload"
     check_call(login_and_upload_command)

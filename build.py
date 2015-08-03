@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import sys
-import socket
 import os
 
 from argparse import ArgumentParser
@@ -12,10 +11,7 @@ def ensure_tool(name):
     check_call(['which', name])
 
 
-def build_and_publish(path, args):
-    login_command = get_login_command(args)
-    print >>sys.stderr, "Test anaconda.org login:"
-    check_call(login_command, shell=True)
+def build_and_publish(path, token):
 
     binfile = check_output(['conda', 'build', '--output', path])
     binfile = binfile.strip()
@@ -24,20 +20,10 @@ def build_and_publish(path, args):
     print >>sys.stderr, "conda build {}".format(path)
     check_call(['conda', 'build', path])
 
-    upload_command = "binstar upload --force {}".format(binfile)
+    upload_command = "binstar -t {} upload --force {}".format(token, binfile)
 
-    login_and_upload_command = "{} && {}".format(login_command, upload_command)
-    print >>sys.stderr, "Login to binstar and upload"
-    check_call(login_and_upload_command, shell=True)
-
-
-def get_login_command(args):
-    return ("binstar login --hostname {hostname} "
-            " --username {username} --password {password}")\
-        .format(
-        username=args.username,
-        password=args.password,
-    )
+    print >>sys.stderr, "Upload to Anaconda.org"
+    check_call(upload_command, shell=True)
 
 
 def get_conda_recipes_dir(project):
@@ -55,8 +41,7 @@ def conda_paths(conda_recipes_dir):
 
 def main():
     parser = ArgumentParser()
-    parser.add_argument('-u', '--username', required=True)
-    parser.add_argument('-P', '--password', required=True)
+    parser.add_argument('-u', '--token', required=True)
     parser.add_argument('-p', '--project', required=True)
     parser.add_argument('-s', '--site', required=False, default=None)
     args = parser.parse_args()
@@ -68,7 +53,7 @@ def main():
     conda_recipes_dir = get_conda_recipes_dir(args.project)
 
     for conda_path in conda_paths(conda_recipes_dir):
-        build_and_publish(conda_path, args)
+        build_and_publish(conda_path, args.token)
     return 0
 
 

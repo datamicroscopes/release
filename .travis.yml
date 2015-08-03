@@ -28,16 +28,17 @@ env:
   global:
   - secure: k1lj4j8iPn+bZXsbOolWZjUPkeUkFLOOA/L/Amjf8BH1+IxHlqNq8IwnynSKrPVRkDVMHpUY4WoK2+4/M1mFPyT7VMU7sL45oJy9wtZ9dz4FrTIRZny98lbWHOuRpf69v36/IpBeyX+krcJI4SLjuRpOsEoSJA+VA4hj7k25cX4=
   - secure: m2LUlcPzgxsE9Ta1zlGqUCqanfn2JEgF4TKF/MeGPBQCtwneu1aq0tqNpSEr6FBNUCbqo5hWcOz5+T6L7uDuv+w59yA0shcY0xwrMBsptNhWfjCXtsiyQ8DhpJSbsdESj3brh+Je0cuJqsGXzrpFznI2L+qouTy+DLBp+baHcfM=
+  - secure: Na4iSuixnYsqr0HDnVmkjly/AyTewEUkUwRot+R9nN7m4vB0x4TqtjPKUSx5771zftrIYqIZY3HXmOvM3DvYc+LmykZIEuE0Ci/kVpn3YIOyA/bFRjeOPQHXao6408jprD30PJCR0y/W5s78OTqBBNpr6kWc76clGxBvdPJu+dI=
 install:
 - echo "nothing to do"
 script:
-- python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project
+- python build.py --token "$ANACONDA_TOKEN" --project
   common
-- python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project
+- python build.py --token "$ANACONDA_TOKEN" --project
   mixturemodel
-- python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project
+- python build.py --token "$ANACONDA_TOKEN" --project
   irm
-- python build.py --username datamicroscopes --password "$BINSTAR_PASSWORD" --project
+- python build.py --token "$ANACONDA_TOKEN" --project
   kernels
 after_success:
 - conda install --yes microscopes-common microscopes-mixturemodel microscopes-irm

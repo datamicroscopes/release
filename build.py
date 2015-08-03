@@ -8,8 +8,10 @@ from argparse import ArgumentParser
 from subprocess import check_call, check_output
 from binstar_client.utils import get_config, get_binstar, store_token
 
+
 def ensure_tool(name):
     check_call(['which', name])
+
 
 def build_and_publish(path, username):
     binfile = check_output(['conda', 'build', '--output', path])
@@ -33,9 +35,9 @@ def binstar_login(args):
         'binstar_client:{}'.format(socket.gethostname()),
         url, created_with='')
     if token is None:
-        print >>sys.stderr, 'could not login'
-        return 1
+        sys.exit('could not login to anaconda.org')
     store_token(token, args)
+
 
 def get_conda_recipes_dir(project):
     # make sure the project has a conda recipes folder

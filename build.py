@@ -37,6 +37,13 @@ def binstar_login(args):
         return 1
     store_token(token, args)
 
+def get_conda_recipes_dir(project):
+    # make sure the project has a conda recipes folder
+    conda_recipes_dir = os.path.join(project, 'conda')
+    if not os.path.isdir(conda_recipes_dir):
+        sys.exit('no such dir: {}'.format(conda_recipes_dir))
+    return conda_recipes_dir
+
 
 def main():
     parser = ArgumentParser()
@@ -50,12 +57,7 @@ def main():
     ensure_tool('conda')
     ensure_tool('binstar')
 
-    # make sure the project has a conda recipes folder
-    conda_recipes_dir = os.path.join(args.project, 'conda')
-    if not os.path.isdir(conda_recipes_dir):
-        print >>sys.stderr, 'no such dir: {}'.format(conda_recipes_dir)
-        return 1
-
+    conda_recipes_dir = get_conda_recipes_dir(args.project)
     binstar_login(args)
 
     for name in sorted(os.listdir(conda_recipes_dir)):

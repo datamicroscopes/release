@@ -18,6 +18,7 @@ def build_and_publish(path, args):
 
     binfile = check_output(['conda', 'build', '--output', path])
     binfile = binfile.strip()
+    print >>sys.stderr, "build path {}".format(binfile)
 
     print >>sys.stderr, "conda build {}".format(path)
     check_call(['conda', 'build', path])

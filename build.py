@@ -47,6 +47,12 @@ def get_conda_recipes_dir(project):
     return conda_recipes_dir
 
 
+def conda_paths(conda_recipes_dir):
+    for name in sorted(os.listdir(conda_recipes_dir)):
+        yield os.path.join(conda_recipes_dir, name)
+
+
+
 def main():
     parser = ArgumentParser()
     parser.add_argument('-u', '--username', required=True)
@@ -62,8 +68,7 @@ def main():
     conda_recipes_dir = get_conda_recipes_dir(args.project)
     binstar_login(args)
 
-    for name in sorted(os.listdir(conda_recipes_dir)):
-        conda_path = os.path.join(conda_recipes_dir, name)
+    for conda_path in conda_paths(conda_recipes_dir):
         build_and_publish(conda_path, args.username)
     return 0
 

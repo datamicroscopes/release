@@ -26,10 +26,9 @@ def binstar_login(args):
     # login to binstar
     # this code is taken from:
     #   binstar_client/commands/login.py
-    bs = get_binstar()
     config = get_config()
     url = config.get('url', 'https://api.binstar.org')
-    token = bs.authenticate(
+    token = get_binstar().authenticate(
         args.username, args.password,
         'binstar_client:{}'.format(socket.gethostname()),
         url, created_with='')

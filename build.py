@@ -12,7 +12,7 @@ conda = sh.Command('conda')
 
 
 def build_and_publish(path, token):
-    binfile = conda.build(output=path).strip()
+    binfile = conda.build("output", path).strip()
     conda.build(path)
     binstar.bake(t=token).upload(binfile, force=True)
 

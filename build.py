@@ -2,41 +2,37 @@
 
 import sys
 import os
-import socket
 
 from argparse import ArgumentParser
 from subprocess import check_call, check_output
-from binstar_client.utils import get_config, get_binstar, store_token
 
 
 def ensure_tool(name):
     check_call(['which', name])
 
 
-def build_and_publish(path, username):
+def build_and_publish(path, args):
     binfile = check_output(['conda', 'build', '--output', path])
     binfile = binfile.strip()
 
     print >>sys.stderr, "conda build {}".format(path)
     check_call(['conda', 'build', path])
 
-    print >>sys.stderr, "binstar upload --force {}".format(binfile)
-    check_call(['binstar', 'upload', '--force', binfile])
+    upload_command = "binstar upload --force {}".format(binfile)
+    login_command = get_login_command(args)
+    login_and_upload_command = "{} && {}".format(login_command, upload_command)
+    print >>sys.stderr, "Login to binstar and upload"
+    check_call(login_and_upload_command)
 
 
-def binstar_login(args):
-    # login to binstar
-    # this code is taken from:
-    #   binstar_client/commands/login.py
-    config = get_config()
-    url = config.get('url', 'https://api.binstar.org')
-    token = get_binstar().authenticate(
-        args.username, args.password,
-        'binstar_client:{}'.format(socket.gethostname()),
-        url, created_with='')
-    if token is None:
-        sys.exit('could not login to anaconda.org')
-    store_token(token, args)
+def get_login_command(args):
+    return ("binstar login --hostname {hostname} "
+            " --username {username} --password {password}")\
+        .format(
+        hostname='https://api.anaconda.org',
+        username=args.username,
+        password=args.password,
+    )
 
 
 def get_conda_recipes_dir(project):
@@ -52,7 +48,6 @@ def conda_paths(conda_recipes_dir):
         yield os.path.join(conda_recipes_dir, name)
 
 
-
 def main():
     parser = ArgumentParser()
     parser.add_argument('-u', '--username', required=True)
@@ -66,11 +61,11 @@ def main():
     ensure_tool('binstar')
 
     conda_recipes_dir = get_conda_recipes_dir(args.project)
-    binstar_login(args)
 
     for conda_path in conda_paths(conda_recipes_dir):
-        build_and_publish(conda_path, args.username)
+        build_and_publish(conda_path, args)
     return 0
+
 
 if __name__ == '__main__':
     sys.exit(main())

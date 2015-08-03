@@ -2,28 +2,19 @@
 
 import sys
 import os
+import sh
 
 from argparse import ArgumentParser
-from subprocess import check_call, check_output
 
 
-def ensure_tool(name):
-    check_call(['which', name])
+binstar = sh.Command('binstar')
+conda = sh.Command('conda')
 
 
 def build_and_publish(path, token):
-
-    binfile = check_output(['conda', 'build', '--output', path])
-    binfile = binfile.strip()
-    print >>sys.stderr, "build path {}".format(binfile)
-
-    print >>sys.stderr, "conda build {}".format(path)
-    check_call(['conda', 'build', path])
-
-    upload_command = "binstar -t {} upload --force {}".format(token, binfile)
-
-    print >>sys.stderr, "Upload to Anaconda.org"
-    check_call(upload_command, shell=True)
+    binfile = conda.build(output=path).strip()
+    conda.build(path)
+    binstar.bake(t=token).upload(binfile, force=True)
 
 
 def get_conda_recipes_dir(project):
@@ -45,10 +36,6 @@ def main():
     parser.add_argument('-p', '--project', required=True)
     parser.add_argument('-s', '--site', required=False, default=None)
     args = parser.parse_args()
-
-    # make sure we have a conda environment
-    ensure_tool('conda')
-    ensure_tool('binstar')
 
     conda_recipes_dir = get_conda_recipes_dir(args.project)
 

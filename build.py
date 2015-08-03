@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+import socket
 import os
 
 from argparse import ArgumentParser
@@ -34,7 +35,6 @@ def get_login_command(args):
     return ("binstar login --hostname {hostname} "
             " --username {username} --password {password}")\
         .format(
-        hostname='https://api.anaconda.org',
         username=args.username,
         password=args.password,
     )

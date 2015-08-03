@@ -21,6 +21,24 @@ def build_and_publish(path, binstar, username):
     print >>sys.stderr, "binstar upload --force {}".format(binfile)
     check_call(['binstar', 'upload', '--force', binfile])
 
+
+def binstar_login(args):
+    # login to binstar
+    # this code is taken from:
+    #   binstar_client/commands/login.py
+    bs = get_binstar()
+    config = get_config()
+    url = config.get('url', 'https://api.binstar.org')
+    token = bs.authenticate(
+        args.username, args.password,
+        'binstar_client:{}'.format(socket.gethostname()),
+        url, created_with='')
+    if token is None:
+        print >>sys.stderr, 'could not login'
+        return 1
+    store_token(token, args)
+
+
 def main():
     parser = ArgumentParser()
     parser.add_argument('-u', '--username', required=True)
@@ -39,25 +57,12 @@ def main():
         print >>sys.stderr, 'no such dir: {}'.format(conda_recipes_dir)
         return 1
 
-    # login to binstar
-    # this code is taken from:
-    #   binstar_client/commands/login.py
-    bs = get_binstar()
-    config = get_config()
-    url = config.get('url', 'https://api.binstar.org')
-    token = bs.authenticate(
-        args.username, args.password,
-        'binstar_client:{}'.format(socket.gethostname()),
-        url, created_with='')
-    if token is None:
-        print >>sys.stderr, 'could not login'
-        return 1
-    store_token(token, args)
+    binstar_login()
 
     for name in sorted(os.listdir(conda_recipes_dir)):
         build_and_publish(
             os.path.join(conda_recipes_dir, name),
-            bs,
+            None,
             args.username)
 
     return 0

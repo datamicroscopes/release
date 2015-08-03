@@ -57,7 +57,7 @@ def main():
         print >>sys.stderr, 'no such dir: {}'.format(conda_recipes_dir)
         return 1
 
-    binstar_login()
+    binstar_login(args)
 
     for name in sorted(os.listdir(conda_recipes_dir)):
         build_and_publish(

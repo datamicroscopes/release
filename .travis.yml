@@ -18,7 +18,7 @@ before_install:
 - sudo ln -s /run/shm /dev/shm
 - export CC=gcc-4.8
 - export CXX=g++-4.8
-- conda install --yes conda-server conda-build jinja2 anaconda-client
+- conda install --yes conda-server conda-build jinja2 anaconda-client sh
 - conda config --add channels distributions
 - conda config --add channels datamicroscopes
 - git config --global user.email "datamicroscopes.travis.builder@gmail.com"

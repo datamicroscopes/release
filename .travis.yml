@@ -7,9 +7,6 @@ notifications:
     secure: lWJsUXTtmQJarJdLBlBXJCkbS4ttYDaIFYtcisv81PZwkrOX2WAOzYsVYqN3T6496ANbVtFBiUHFcp6dyKMIp/GjUkrYGkTzNCmnEcJcj6fuFdDb2NvvEI4rt+qa56bwF1TquVP5BXzEnCrDFcRMqbs8TJWKtfbzWgiqVUtZbD0=
 before_install:
 - ./linux_prebuild.sh
-- wget http://repo.continuum.io/miniconda/Miniconda-3.5.5-Linux-x86_64.sh -O miniconda.sh
-- chmod +x miniconda.sh
-- "./miniconda.sh -b"
 - export PATH=/home/travis/miniconda/bin:$PATH
 - conda update --yes conda
 - conda install --yes conda-server conda-build jinja2 anaconda-client sh

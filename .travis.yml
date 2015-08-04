@@ -8,6 +8,7 @@ notifications:
 before_install:
 - ./linux_prebuild.sh
 - export PATH=/home/travis/miniconda/bin
+- printenv
 env:
   global:
   - secure: m2LUlcPzgxsE9Ta1zlGqUCqanfn2JEgF4TKF/MeGPBQCtwneu1aq0tqNpSEr6FBNUCbqo5hWcOz5+T6L7uDuv+w59yA0shcY0xwrMBsptNhWfjCXtsiyQ8DhpJSbsdESj3brh+Je0cuJqsGXzrpFznI2L+qouTy+DLBp+baHcfM=

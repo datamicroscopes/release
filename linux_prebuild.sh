@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 sudo apt-get update -qq
 sudo apt-get install -qq g++-4.8

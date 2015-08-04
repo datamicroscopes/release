@@ -17,16 +17,12 @@ def build_and_publish(path, token):
     binstar.bake(t=token).upload(binfile, force=True)
 
 
-def get_conda_recipes_dir(project):
-    # make sure the project has a conda recipes folder
-    conda_recipes_dir = os.path.join(project, 'conda')
+def conda_paths(project_name):
+    conda_recipes_dir = os.path.join(project_name, 'conda')
+
     if not os.path.isdir(conda_recipes_dir):
         sys.exit('no such dir: {}'.format(conda_recipes_dir))
-    return conda_recipes_dir
 
-
-def conda_paths(project_name):
-    conda_recipes_dir = get_conda_recipes_dir(project_name)
     for name in sorted(os.listdir(conda_recipes_dir)):
         yield os.path.join(conda_recipes_dir, name)
 

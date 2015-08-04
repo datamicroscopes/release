@@ -7,14 +7,19 @@ import sh
 from argparse import ArgumentParser
 
 
-binstar = sh.Command('binstar')
+# Initialize
+try:
+    token = os.environ['ANACONDA_TOKEN']
+except KeyError:
+    sys.exit("Must set $ANACONDA_TOKEN")
+binstar = sh.Command('binstar').bake(t=token)
 conda = sh.Command('conda')
 
 
-def build_and_publish(path, token):
+def build_and_publish(path):
     binfile = conda.build("--output", path).strip()
     conda.build(path)
-    binstar.bake(t=token).upload(binfile, force=True)
+    binstar.upload(binfile, force=True)
 
 
 def conda_paths(project_name):
@@ -29,13 +34,12 @@ def conda_paths(project_name):
 
 def main():
     parser = ArgumentParser()
-    parser.add_argument('-u', '--token', required=True)
     parser.add_argument('-p', '--project', required=True)
     parser.add_argument('-s', '--site', required=False, default=None)
     args = parser.parse_args()
 
     for conda_path in conda_paths(args.project):
-        build_and_publish(conda_path, args.token)
+        build_and_publish(conda_path)
     return 0
 
 

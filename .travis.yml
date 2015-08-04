@@ -32,14 +32,10 @@ env:
 install:
 - echo "nothing to do"
 script:
-- python build.py --token "$ANACONDA_TOKEN" --project
-  common
-- python build.py --token "$ANACONDA_TOKEN" --project
-  mixturemodel
-- python build.py --token "$ANACONDA_TOKEN" --project
-  irm
-- python build.py --token "$ANACONDA_TOKEN" --project
-  kernels
+- python build.py --project common
+- python build.py --project mixturemodel
+- python build.py --project irm
+- python build.py --project kernels
 after_success:
 - conda install --yes microscopes-common microscopes-mixturemodel microscopes-irm
   microscopes-kernels

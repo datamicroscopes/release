@@ -7,3 +7,6 @@ sudo rm -rf /dev/shm
 sudo ln -s /run/shm /dev/shm
 export CC=gcc-4.8
 export CXX=g++-4.8
+git config --global user.email "datamicroscopes.travis.builder@gmail.com"
+git config --global user.name "datamicroscopes-travis-builder"
+git config --global push.default simple

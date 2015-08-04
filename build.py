@@ -25,7 +25,8 @@ def get_conda_recipes_dir(project):
     return conda_recipes_dir
 
 
-def conda_paths(conda_recipes_dir):
+def conda_paths(project_name):
+    conda_recipes_dir = get_conda_recipes_dir(project_name)
     for name in sorted(os.listdir(conda_recipes_dir)):
         yield os.path.join(conda_recipes_dir, name)
 
@@ -37,9 +38,7 @@ def main():
     parser.add_argument('-s', '--site', required=False, default=None)
     args = parser.parse_args()
 
-    conda_recipes_dir = get_conda_recipes_dir(args.project)
-
-    for conda_path in conda_paths(conda_recipes_dir):
+    for conda_path in conda_paths(args.project):
         build_and_publish(conda_path, args.token)
     return 0
 

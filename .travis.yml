@@ -8,6 +8,7 @@ notifications:
 before_install:
 - "[ ${TRAVIS_OS_NAME} == linux ] && . ./linux_prebuild.sh || echo 0"
 - "[ ${TRAVIS_OS_NAME} == osx ] && . ./osx_prebuild.sh || echo 0"
+- . ./environ_prebuild.sh
 - printenv
 env:
   global:

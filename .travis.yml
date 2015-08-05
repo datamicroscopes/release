@@ -12,15 +12,16 @@ before_install:
 - printenv
 env:
   global:
+  - ANACONDA_CHANNEL=main
   - secure: m2LUlcPzgxsE9Ta1zlGqUCqanfn2JEgF4TKF/MeGPBQCtwneu1aq0tqNpSEr6FBNUCbqo5hWcOz5+T6L7uDuv+w59yA0shcY0xwrMBsptNhWfjCXtsiyQ8DhpJSbsdESj3brh+Je0cuJqsGXzrpFznI2L+qouTy+DLBp+baHcfM=
   - secure: Na4iSuixnYsqr0HDnVmkjly/AyTewEUkUwRot+R9nN7m4vB0x4TqtjPKUSx5771zftrIYqIZY3HXmOvM3DvYc+LmykZIEuE0Ci/kVpn3YIOyA/bFRjeOPQHXao6408jprD30PJCR0y/W5s78OTqBBNpr6kWc76clGxBvdPJu+dI=
 install:
 - echo "nothing to do"
 script:
-- python build.py --project common
-- python build.py --project mixturemodel
-- python build.py --project irm
-- python build.py --project kernels
-- python build.py --project lda
+- python build.py --project common --channel $ANACONDA_CHANNEL
+- python build.py --project mixturemodel --channel $ANACONDA_CHANNEL
+- python build.py --project irm --channel $ANACONDA_CHANNEL
+- python build.py --project kernels --channel $ANACONDA_CHANNEL
+- python build.py --project lda --channel $ANACONDA_CHANNEL
 after_success:
 - "[ ${TRAVIS_OS_NAME} == linux ] && . ./build_docs.sh || echo 0"

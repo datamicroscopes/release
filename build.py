@@ -16,7 +16,7 @@ binstar = sh.Command('binstar').bake(t=token)
 conda = sh.Command('conda')
 
 
-def build_and_publish(path, channel="main"):
+def build_and_publish(path, channel):
     binfile = conda.build("--output", path).strip()
     print conda.build(path).ran
     print binstar.upload(binfile, force=True, channel=channel).ran
@@ -35,11 +35,12 @@ def conda_paths(project_name):
 def main():
     parser = ArgumentParser()
     parser.add_argument('-p', '--project', required=True)
+    parser.add_argument('-c', '--channel', required=False, default='main')
     parser.add_argument('-s', '--site', required=False, default=None)
     args = parser.parse_args()
 
     for conda_path in conda_paths(args.project):
-        build_and_publish(conda_path)
+        build_and_publish(conda_path, channel=args.channel)
     return 0
 
 

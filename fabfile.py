@@ -28,6 +28,7 @@ def generate_yaml(language, channel):
 
 
 def _release(language, message, channel):
+    print message, "...",
     if is_dirty():
         sys.exit("Repo must be in clean state before deploying. Please commit changes.")
     generate_yaml(language, channel)
@@ -37,6 +38,7 @@ def _release(language, message, channel):
     sh.git.commit(m=message, allow_empty=True)
     sh.git.pull(rebase=True)
     sh.git.push()
+    print "done."
 
 
 @fab.task
@@ -66,4 +68,4 @@ def release_osx(channel="main"):
 
 @fab.task
 def release_linux(channel="main"):
-    _release('objective-c', "Release OS X", channel)
+    _release('python', "Release Linux", channel)

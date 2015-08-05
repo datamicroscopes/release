@@ -4,7 +4,6 @@ import yaml
 
 from fabric import api as fab
 
-sed = sh.sed.bake('-i bak -e')
 TRAVIS_YAML = 'travis.yml'
 
 
@@ -32,7 +31,7 @@ def _release(language, message, channel):
     generate_yaml(language, channel)
 
     if is_dirty():
-        sh.git.add(TRAVIS_YAML)
+        sh.git.add('.travis.yml')
     sh.git.commit(m=message, allow_empty=True)
     sh.git.pull(rebase=True)
     sh.git.push()

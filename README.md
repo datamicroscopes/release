@@ -34,6 +34,10 @@ To push a new Linux build to Anaconda.org, use
 
     $ fab release_linux
 
+You can cut a release for both with:
+
+    $ fab release_all
+
 By default, we build to the [main channel on Anaconda.org](http://docs.anaconda.org/#Channels). You can build to another channel (e.g. the dev channel) by running a command like:
 
     $ fab release_osx:dev

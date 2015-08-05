@@ -20,8 +20,8 @@ def _release(language, message, channel):
     sed(REPLACE_LANGUAGE.format(language), TRAVIS_YAML)
     sed(REPLACE_CHANNEL.format(channel), TRAVIS_YAML)
     print "-----"
-    print sh.grep(r"language:", TRAVIS_YAML)
-    print sh.grep(r"ANACONDA_CHANNEL=", TRAVIS_YAML)
+    print sh.grep(r"language:", TRAVIS_YAML).strip()
+    print sh.grep(r"ANACONDA_CHANNEL=", TRAVIS_YAML).strip()
     print "-----"
 
     if is_dirty():

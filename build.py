@@ -18,8 +18,10 @@ conda = sh.Command('conda')
 
 def build_and_publish(path, channel):
     binfile = conda.build("--output", path).strip()
-    print conda.build(path).ran
-    print binstar.upload(binfile, force=True, channel=channel).ran
+    print "Building..."
+    conda.build(path)
+    print "Upload to Anaconda.org..."
+    binstar.upload(binfile, force=True, channel=channel)
 
 
 def conda_paths(project_name):

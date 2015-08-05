@@ -18,7 +18,7 @@ def release(language, message):
     sed(REPLACE_LANGUAGE.format(language), TRAVIS_YAML)
     if is_dirty():
         sh.git.add(TRAVIS_YAML)
-        sh.git.commit(m="'{}'".format(message))
+        sh.git.commit(m=message)
     sh.git.pull(rebase=True)
     sh.git.push()
 

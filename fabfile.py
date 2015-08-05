@@ -24,6 +24,16 @@ def release(language, message):
 
 
 @fab.task
+def update():
+    if is_dirty():
+        sys.exit("Repo must be in clean state before deploying. Please commit changes.")
+    sh.git.submodule.update(remote=True, rebase=True)
+    if is_dirty():
+        sh.git.add(all=True)
+        sh.git.commit(m="Update submodules to origin")
+
+
+@fab.task
 def release_osx():
     release('objective-c', "Release OS X")
 

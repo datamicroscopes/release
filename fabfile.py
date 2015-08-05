@@ -43,6 +43,7 @@ def _release(language, message, channel):
 
 @fab.task
 def update():
+    """Update all submodules to Github versions"""
     if is_dirty():
         sys.exit("Repo must be in clean state before deploying. Please commit changes.")
     sh.git.submodule.update(remote=True, rebase=True)
@@ -57,15 +58,18 @@ def update():
 
 @fab.task
 def release_all(channel="main"):
+    """Release datamicroscopes to Anaconda.org for OS X and Linux"""
     release_osx(channel)
     release_linux(channel)
 
 
 @fab.task
 def release_osx(channel="main"):
+    """Release datamicroscopes to Anaconda.org for OS X"""
     _release('objective-c', "Release OS X", channel)
 
 
 @fab.task
 def release_linux(channel="main"):
+    """Release datamicroscopes to Anaconda.org for Linux"""
     _release('python', "Release Linux", channel)

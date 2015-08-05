@@ -23,7 +23,6 @@ def release(language, message):
     sh.git.push()
 
 
-
 @fab.task
 def release_osx():
     release('objective-c', "Release OS X")

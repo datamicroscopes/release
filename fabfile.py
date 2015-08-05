@@ -16,13 +16,19 @@ def is_dirty():
 def _release(language, message, channel):
     if is_dirty():
         sys.exit("Repo must be in clean state before deploying. Please commit changes.")
+
     sed(REPLACE_LANGUAGE.format(language), TRAVIS_YAML)
     sed(REPLACE_CHANNEL.format(channel), TRAVIS_YAML)
+    print "-----"
+    print sh.grep(r"language:", TRAVIS_YAML)
+    print sh.grep(r"ANACONDA_CHANNEL=", TRAVIS_YAML)
+    print "-----"
+
     if is_dirty():
         sh.git.add(TRAVIS_YAML)
-    # sh.git.commit(m=message, allow_empty=True)
-    # sh.git.pull(rebase=True)
-    # sh.git.push()
+    sh.git.commit(m=message, allow_empty=True)
+    sh.git.pull(rebase=True)
+    sh.git.push()
 
 
 @fab.task

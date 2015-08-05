@@ -17,9 +17,9 @@ install:
 - echo "nothing to do"
 script:
 - python build.py --project common --channel $ANACONDA_CHANNEL
+- python build.py --project kernels --channel $ANACONDA_CHANNEL
 - python build.py --project mixturemodel --channel $ANACONDA_CHANNEL
 - python build.py --project irm --channel $ANACONDA_CHANNEL
-- python build.py --project kernels --channel $ANACONDA_CHANNEL
 - python build.py --project lda --channel $ANACONDA_CHANNEL
 after_success:
 - "[ ${TRAVIS_OS_NAME} == linux ] && . ./build_docs.sh || echo 0"

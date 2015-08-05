@@ -54,20 +54,16 @@ def update():
 
 
 @fab.task
-def release(os, channel="main"):
-    if os.lower() == "osx":
-        _release('objective-c', "Release OS X", channel)
-    elif os.lower() == "linux":
-        _release('python', "Release Linux", channel)
-    else:
-        sys.exit("Specify either osx or linux.")
+def release_all(channel="main"):
+    release_osx(channel)
+    release_linux(channel)
 
 
 @fab.task
 def release_osx(channel="main"):
-    release("osx", channel)
+    _release('objective-c', "Release OS X", channel)
 
 
 @fab.task
 def release_linux(channel="main"):
-    release("linux", channel)
+    _release('objective-c', "Release OS X", channel)

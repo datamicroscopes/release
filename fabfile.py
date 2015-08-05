@@ -29,6 +29,8 @@ def update():
         sys.exit("Repo must be in clean state before deploying. Please commit changes.")
     sh.git.submodule.update(remote=True, rebase=True)
     if is_dirty():
+        print "Updated repositories:"
+        print sh.git.status(porcelain=True)
         sh.git.add(all=True)
         sh.git.commit(m="Update submodules to origin")
     else:

@@ -1,6 +1,6 @@
 # microscopes-release
 
-Linux: [![Build Status](https://travis-ci.org/datamicroscopes/release.svg?branch=master)](https://travis-ci.org/datamicroscopes/release) OS X: [![Build Status](https://travis-ci.org/datamicroscopes/release.svg?branch=osx)](https://travis-ci.org/datamicroscopes/release)
+[![Build Status](https://travis-ci.org/datamicroscopes/release.svg?branch=master)](https://travis-ci.org/datamicroscopes/release)
 
 Tools for building conda releases of datamicroscopes on both Linux and OS X.
 

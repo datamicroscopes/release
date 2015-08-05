@@ -31,6 +31,8 @@ def update():
     if is_dirty():
         sh.git.add(all=True)
         sh.git.commit(m="Update submodules to origin")
+    else:
+        sys.exit('Nothing to update.')
 
 
 @fab.task

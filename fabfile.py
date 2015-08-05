@@ -30,7 +30,7 @@ def update():
     sh.git.submodule.update(remote=True, rebase=True)
     if is_dirty():
         print "Updated repositories:"
-        print sh.git.status(porcelain=True)
+        print sh.git.status(porcelain=True).strip()
         sh.git.add(all=True)
         sh.git.commit(m="Update submodules to origin")
     else:

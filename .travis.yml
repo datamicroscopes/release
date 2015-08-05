@@ -23,4 +23,4 @@ script:
 - python build.py --project kernels
 - python build.py --project lda
 after_success:
-- "[ ${TRAVIS_OS_NAME} == linux ] && . ./build_docs.sh"
+- "[ ${TRAVIS_OS_NAME} == linux ] && . ./build_docs.sh || echo 0"

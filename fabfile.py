@@ -19,6 +19,9 @@ def release(language, message):
     if is_dirty():
         sh.git.add(TRAVIS_YAML)
         sh.git.commit(m="'{}'".format(message))
+    sh.git.pull(rebase=True)
+    sh.git.push()
+
 
 
 @fab.task

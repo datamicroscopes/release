@@ -1,3 +1,6 @@
+git config --global user.email "datamicroscopes.travis.builder@gmail.com"
+git config --global user.name "datamicroscopes-travis-builder"
+git config --global push.default simple
 conda install --yes microscopes-common microscopes-mixturemodel microscopes-irm microscopes-lda microscopes-kernels
 conda install --yes sphinx pip numpydoc
 pip install sphinx_bootstrap_theme

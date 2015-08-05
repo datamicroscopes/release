@@ -1,5 +1,6 @@
 conda install --yes microscopes-common microscopes-mixturemodel microscopes-irm microscopes-lda microscopes-kernels
 conda install --yes sphinx pip numpydoc
+pip install sphinx_bootstrap_theme
 git clone "https://datamicroscopes-travis-builder:$GITHUB_PASSWORD@github.com/datamicroscopes/datamicroscopes.github.io" D
 (cd doc && make html)
 rm -rf D/*

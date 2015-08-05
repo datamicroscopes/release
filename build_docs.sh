@@ -1,5 +1,4 @@
-conda install --yes microscopes-common microscopes-mixturemodel microscopes-irm microscopes-lda
-  microscopes-kernels
+conda install --yes microscopes-common microscopes-mixturemodel microscopes-irm microscopes-lda microscopes-kernels
 conda install --yes sphinx pip
 which pip
 pip install numpydoc

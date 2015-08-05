@@ -19,6 +19,6 @@ notifications:
   slack: {secure: lWJsUXTtmQJarJdLBlBXJCkbS4ttYDaIFYtcisv81PZwkrOX2WAOzYsVYqN3T6496ANbVtFBiUHFcp6dyKMIp/GjUkrYGkTzNCmnEcJcj6fuFdDb2NvvEI4rt+qa56bwF1TquVP5BXzEnCrDFcRMqbs8TJWKtfbzWgiqVUtZbD0=}
 python: ['2.7']
 script: [python build.py --project common --channel $ANACONDA_CHANNEL, python build.py
-    --project mixturemodel --channel $ANACONDA_CHANNEL, python build.py --project
-    irm --channel $ANACONDA_CHANNEL, python build.py --project kernels --channel $ANACONDA_CHANNEL,
+    --project kernels --channel $ANACONDA_CHANNEL, python build.py --project mixturemodel
+    --channel $ANACONDA_CHANNEL, python build.py --project irm --channel $ANACONDA_CHANNEL,
   python build.py --project lda --channel $ANACONDA_CHANNEL]

@@ -13,6 +13,25 @@ WARNING = """
 """
 
 
+@fab.task
+def release_all(channel="main"):
+    """Release datamicroscopes to Anaconda.org for OS X and Linux"""
+    release_osx(channel)
+    release_linux(channel)
+
+
+@fab.task
+def release_osx(channel="main"):
+    """Release datamicroscopes to Anaconda.org for OS X"""
+    _release('objective-c', "Release OS X", channel)
+
+
+@fab.task
+def release_linux(channel="main"):
+    """Release datamicroscopes to Anaconda.org for Linux"""
+    _release('python', "Release Linux", channel)
+
+
 def _is_dirty():
     return "" != sh.git.status(porcelain=True).strip()
 
@@ -54,22 +73,3 @@ def update():
         sh.git.commit(m="Update submodules to origin")
     else:
         sys.exit('Nothing to update.')
-
-
-@fab.task
-def release_all(channel="main"):
-    """Release datamicroscopes to Anaconda.org for OS X and Linux"""
-    release_osx(channel)
-    release_linux(channel)
-
-
-@fab.task
-def release_osx(channel="main"):
-    """Release datamicroscopes to Anaconda.org for OS X"""
-    _release('objective-c', "Release OS X", channel)
-
-
-@fab.task
-def release_linux(channel="main"):
-    """Release datamicroscopes to Anaconda.org for Linux"""
-    _release('python', "Release Linux", channel)

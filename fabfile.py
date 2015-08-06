@@ -45,7 +45,7 @@ def _release(language, message, channel):
 def update():
     """Update all submodules to Github versions"""
     if _is_dirty():
-        sys.exit("Repo must be in clean state before deploying. Please commit changes.")
+        sys.exit("Repo must be in clean state before updating. Please commit changes.")
     sh.git.submodule.update(remote=True, rebase=True)
     if _is_dirty():
         print "Updated repositories:"

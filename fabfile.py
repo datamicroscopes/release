@@ -13,11 +13,11 @@ WARNING = """
 """
 
 
-def is_dirty():
+def _is_dirty():
     return "" != sh.git.status(porcelain=True).strip()
 
 
-def generate_yaml(language, channel):
+def _generate_yaml(language, channel):
     with open(TRAVIS_YAML, "r") as f:
         travis = yaml.load(f)
     travis['language'] = language
@@ -29,11 +29,11 @@ def generate_yaml(language, channel):
 
 def _release(language, message, channel):
     print message, "...",
-    if is_dirty():
+    if _is_dirty():
         sys.exit("Repo must be in clean state before deploying. Please commit changes.")
-    generate_yaml(language, channel)
+    _generate_yaml(language, channel)
 
-    if is_dirty():
+    if _is_dirty():
         sh.git.add('.travis.yml')
     sh.git.commit(m=message, allow_empty=True)
     sh.git.pull(rebase=True)
@@ -44,10 +44,10 @@ def _release(language, message, channel):
 @fab.task
 def update():
     """Update all submodules to Github versions"""
-    if is_dirty():
+    if _is_dirty():
         sys.exit("Repo must be in clean state before deploying. Please commit changes.")
     sh.git.submodule.update(remote=True, rebase=True)
-    if is_dirty():
+    if _is_dirty():
         print "Updated repositories:"
         print sh.git.status(porcelain=True).strip()
         sh.git.add(all=True)

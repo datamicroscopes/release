@@ -43,8 +43,7 @@ def main():
 
     for conda_path in conda_paths(args.project):
         build_and_publish(conda_path, channel=args.channel)
-    return 0
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    main()

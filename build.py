@@ -12,7 +12,7 @@ try:
     token = os.environ['ANACONDA_TOKEN']
 except KeyError:
     sys.exit("Must set $ANACONDA_TOKEN")
-binstar = sh.Command('binstar').bake(t=token)
+anaconda = sh.Command('anaconda').bake(t=token)
 conda = sh.Command('conda')
 
 
@@ -21,7 +21,7 @@ def build_and_publish(path, channel):
     print "Building..."
     conda.build(path)
     print "Upload to Anaconda.org..."
-    binstar.upload(binfile, force=True, channel=channel)
+    anaconda.upload(binfile, force=True, channel=channel)
 
 
 def conda_paths(project_name):

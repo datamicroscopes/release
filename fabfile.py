@@ -1,8 +1,8 @@
 import sys
-import sh
 import yaml
 
 from fabric import api as fab
+from sh import git
 
 TRAVIS_YAML = 'travis.yml'
 WARNING = """
@@ -33,7 +33,7 @@ def release_linux(channel="main"):
 
 
 def _is_dirty():
-    return "" != sh.git.status(porcelain=True).strip()
+    return "" != git.status(porcelain=True).strip()
 
 
 def _generate_yaml(language, channel):
@@ -53,10 +53,10 @@ def _release(language, message, channel):
     _generate_yaml(language, channel)
 
     if _is_dirty():
-        sh.git.add('.travis.yml')
-    sh.git.commit(m=message, allow_empty=True)
-    sh.git.pull(rebase=True)
-    sh.git.push()
+        git.add('.travis.yml')
+    git.commit(m=message, allow_empty=True)
+    git.pull(rebase=True)
+    git.push()
     print "done."
 
 
@@ -65,11 +65,11 @@ def update():
     """Update all submodules to Github versions"""
     if _is_dirty():
         sys.exit("Repo must be in clean state before updating. Please commit changes.")
-    sh.git.submodule.update(remote=True, rebase=True)
+    git.submodule.update(remote=True, rebase=True)
     if _is_dirty():
         print "Updated repositories:"
-        print sh.git.status(porcelain=True).strip()
-        sh.git.add(all=True)
-        sh.git.commit(m="Update submodules to origin")
+        print git.status(porcelain=True).strip()
+        git.add(all=True)
+        git.commit(m="Update submodules to origin")
     else:
         sys.exit('Nothing to update.')

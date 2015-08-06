@@ -7,16 +7,14 @@ import sh
 from argparse import ArgumentParser
 
 
-# Initialize
-try:
-    token = os.environ['ANACONDA_TOKEN']
-except KeyError:
-    sys.exit("Must set $ANACONDA_TOKEN")
-anaconda = sh.Command('anaconda').bake(t=token)
-conda = sh.Command('conda')
-
-
 def build_and_publish(path, channel):
+    try:
+        token = os.environ['ANACONDA_TOKEN']
+    except KeyError:
+        sys.exit("Must set $ANACONDA_TOKEN")
+    anaconda = sh.Command('anaconda').bake(t=token)
+    conda = sh.Command('conda')
+
     binfile = conda.build("--output", path).strip()
     print "Building..."
     conda.build(path)

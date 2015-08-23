@@ -40,7 +40,7 @@ Canada between 1821 and 1934.
 
 .. raw:: html
 
-    <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+    <div>
     <table border="1" class="dataframe">
       <thead>
         <tr style="text-align: right;">
@@ -91,7 +91,7 @@ Canada between 1821 and 1934.
 
 .. parsed-literal::
 
-    <matplotlib.text.Text at 0x114d96210>
+    <matplotlib.text.Text at 0x1129d0090>
 
 
 
@@ -113,7 +113,7 @@ Let's plot the kernel density estimate of annual lynx trapping
 
 .. parsed-literal::
 
-    <matplotlib.text.Text at 0x114d96e10>
+    <matplotlib.text.Text at 0x1129d0410>
 
 
 
@@ -149,7 +149,7 @@ Titanic.
 
 .. raw:: html
 
-    <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+    <div>
     <table border="1" class="dataframe">
       <thead>
         <tr style="text-align: right;">
@@ -280,7 +280,7 @@ examine the correlation matrix
 
 .. raw:: html
 
-    <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+    <div>
     <table border="1" class="dataframe">
       <thead>
         <tr style="text-align: right;">
@@ -321,7 +321,7 @@ Let's plot the kernel density estimate of each variable
 
 .. parsed-literal::
 
-    <matplotlib.text.Text at 0x1176e6810>
+    <matplotlib.text.Text at 0x117426c50>
 
 
 
@@ -339,7 +339,7 @@ Let's plot the kernel density estimate of each variable
 
 .. parsed-literal::
 
-    <matplotlib.text.Text at 0x117971dd0>
+    <matplotlib.text.Text at 0x117475310>
 
 
 
@@ -360,7 +360,7 @@ variable on a log scale:
 
 .. raw:: html
 
-    <div style="max-height:1000px;max-width:1500px;overflow:auto;">
+    <div>
     <table border="1" class="dataframe">
       <thead>
         <tr style="text-align: right;">
@@ -401,7 +401,7 @@ Let's see what a kernel density estimate of log fare would look like
 
 .. parsed-literal::
 
-    <matplotlib.text.Text at 0x117f6aad0>
+    <matplotlib.text.Text at 0x1175a5110>
 
 
 
@@ -444,4 +444,4 @@ To import our univariate normal inverse-chi-squared likelihood, call:
 
 .. code:: python
 
-    from microscopes.models import niw as normal_inverse_chisquared
+    from microscopes.models import nich as normal_inverse_chisquared

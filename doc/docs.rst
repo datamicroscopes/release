@@ -22,3 +22,4 @@ Examples
     gauss2d
     mnist-predictions
     enron-email
+    hdp

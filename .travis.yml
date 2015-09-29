@@ -13,7 +13,7 @@ env:
   - {secure: Na4iSuixnYsqr0HDnVmkjly/AyTewEUkUwRot+R9nN7m4vB0x4TqtjPKUSx5771zftrIYqIZY3HXmOvM3DvYc+LmykZIEuE0Ci/kVpn3YIOyA/bFRjeOPQHXao6408jprD30PJCR0y/W5s78OTqBBNpr6kWc76clGxBvdPJu+dI=}
   - ANACONDA_CHANNEL=main
 install: [echo "nothing to do"]
-language: python
+language: objective-c
 notifications:
   email: false
   slack: {secure: lWJsUXTtmQJarJdLBlBXJCkbS4ttYDaIFYtcisv81PZwkrOX2WAOzYsVYqN3T6496ANbVtFBiUHFcp6dyKMIp/GjUkrYGkTzNCmnEcJcj6fuFdDb2NvvEI4rt+qa56bwF1TquVP5BXzEnCrDFcRMqbs8TJWKtfbzWgiqVUtZbD0=}

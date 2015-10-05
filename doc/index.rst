@@ -21,7 +21,7 @@ First, install `Anaconda <https://store.continuum.io/cshop/anaconda/>`_. Then in
 	$ conda config --add channels distributions
 	$ conda config --add channels datamicroscopes
 	$ conda install microscopes-common
-	$ conda install microscopes-{mixturemodel, irm}
+	$ conda install microscopes-{mixturemodel, irm, lda}
 
 
 .. toctree::

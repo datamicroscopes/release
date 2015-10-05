@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Discovering structure in your data: an overview of clustering</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/lumen/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="None" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          datamicroscopes</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="https://github.com/datamicroscopes">GitHub</a></li>
+                <li><a href="https://qadium.com/">Qadium</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="docs.html">Datatypes and likelihood models in datamicroscopes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beta-bernoulli.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dirichlet-discrete.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normal-inverse-wishart.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normal-inverse-chisquare.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs.html#examples">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mnist-predictions.html">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron-email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.dataview.html">dataviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.util.html">util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.random.html">microscopes.common.random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.query.html">query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.validator.html">microscopes.common.validator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.parallel.html">parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.mixture.html">mixturemodel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.irm.html">irm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.html">kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Contents <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Discovering structure in your data: an overview of clustering</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/intro.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="discovering-structure-in-your-data-an-overview-of-clustering">
+<h1>Discovering structure in your data: an overview of clustering<a class="headerlink" href="#discovering-structure-in-your-data-an-overview-of-clustering" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>Clustering is a method of grouping data.  The underlying assumption in clustering is that there exists <img class="math" src="_images/math/28e003020d0ae96250b302d7d779c791f183f707.png" alt="K"/> latent classes in the data.  The goal of clustering is to classify the observations in the data into these <img class="math" src="_images/math/28e003020d0ae96250b302d7d779c791f183f707.png" alt="K"/> latent classes.</p>
+<p>In the Bayesian context, we assume these clusters are characterized by probability distributions conditioned on their cluster assignment.  These distributions are the likelihood of the clusters.  For examples of the kinds of distributions available for modeling, see our list of available likelihood models.</p>
+<p>To be specific, we assume the data is generated from a mixture of distributions.  As a result, algorithms to learn these underlying probabilistic distributions are called mxiture models</p>
+<p>Let&#8217;s consider the example of 2-dimensional real valued data:</p>
+<img alt="_images/sim2d.png" src="_images/sim2d.png" />
+<p>Since the data is real valued, we&#8217;ll assume the data is distributed multivariate Gaussian:</p>
+<div class="math">
+<p><img src="_images/math/973bda28d923f55d7143bc0217a3bd532b307702.png" alt="P(\mathbf{x}|cluster=k)\sim\mathcal{N}(\mu_{k},\Sigma_{k})"/></p>
+</div><p>As a result, we will use a Gaussian Mixture Model to learn these underlying clusters.  In a Gaussian Mixture Model we learn the parameters of thes Gaussians.  With these parameters, we can estimate the probability that new data is generated from each of these <img class="math" src="_images/math/28e003020d0ae96250b302d7d779c791f183f707.png" alt="K"/> clusters.</p>
+<p>Most clustering algorithms rely on the number of clusters to be known in advance because cluster assignments are considered categorical.  As a result, <img class="math" src="_images/math/28e003020d0ae96250b302d7d779c791f183f707.png" alt="K"/> is assumed in advance so that the dimensionality of cluster assignments is finite.</p>
+<p>Using the Dirichlet Process, we can learn the number of clusters as we learn each cluster&#8217;s parameters.</p>
+<p>We will visualize our data to examine the cluster assignment</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">plot_assignment</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">Y</span><span class="p">):</span>
+    <span class="n">cl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;x&#39;</span><span class="p">,</span><span class="s">&#39;y&#39;</span><span class="p">])</span>
+    <span class="n">cl</span><span class="p">[</span><span class="s">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">assignment</span>
+    <span class="n">n_clusters</span> <span class="o">=</span> <span class="n">cl</span><span class="p">[</span><span class="s">&#39;cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s">&quot;cluster&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">cl</span><span class="p">,</span> <span class="n">fit_reg</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Simulated Gaussians: </span><span class="si">%d</span><span class="s"> Learned Clusters&#39;</span> <span class="o">%</span> <span class="n">n_clusters</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let&#8217;s peek at the starting state for one of our chains</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plot_assignment</span><span class="p">(</span><span class="n">latents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">assignments</span><span class="p">())</span>
+</pre></div>
+</div>
+<img alt="_images/gauss2d_14_0.png" src="_images/gauss2d_14_0.png" />
+<p>Let&#8217;s watch one of the chains evolve for a few steps</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">first_runner</span> <span class="o">=</span> <span class="n">runners</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">first_runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">prng</span><span class="p">,</span> <span class="n">niters</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plot_assignment</span><span class="p">(</span><span class="n">first_runner</span><span class="o">.</span><span class="n">get_latent</span><span class="p">()</span><span class="o">.</span><span class="n">assignments</span><span class="p">())</span>
+</pre></div>
+</div>
+<img alt="_images/gauss2d_16_0.png" src="_images/gauss2d_16_0.png" />
+<img alt="_images/gauss2d_16_1.png" src="_images/gauss2d_16_1.png" />
+<img alt="_images/gauss2d_16_2.png" src="_images/gauss2d_16_2.png" />
+<img alt="_images/gauss2d_16_3.png" src="_images/gauss2d_16_3.png" />
+<img alt="_images/gauss2d_16_4.png" src="_images/gauss2d_16_4.png" />
+<p>Now let&#8217;s burn all our runners in for 100 iterations.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">runner</span> <span class="ow">in</span> <span class="n">runners</span><span class="p">:</span>
+    <span class="n">runner</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">prng</span><span class="p">,</span> <span class="n">niters</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let&#8217;s now peek again at the first state</p>
+<img alt="_images/gauss2d_20_0.png" src="_images/gauss2d_20_0.png" />
+<p>Because this model was run on simulated data, we can compare the results to our acutal underlying assignments:</p>
+<img alt="_images/gauss2d_8_1.png" src="_images/gauss2d_8_1.png" />
+<p>To learn more about the code that generated this example, see Inferring Gaussians with the Dirichlet Process Mixture Model.</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015, Qadium.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

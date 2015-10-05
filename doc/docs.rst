@@ -1,8 +1,17 @@
 .. currentmodule:: microscopes
 .. _docs:
 
-Datatypes and likelihood models in datamicroscopes
+Tutorials
 ===============
+
+.. toctree::
+    :maxdepth: 2
+
+    intro
+    enron_blog
+
+Datatypes and likelihood models in datamicroscopes
+========================
 
 .. toctree::
     :maxdepth: 2
@@ -22,3 +31,4 @@ Examples
     gauss2d
     mnist-predictions
     enron-email
+    hdp

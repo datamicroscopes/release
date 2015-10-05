@@ -1,3 +1,4 @@
+.. currentmodule:: microscopes
 
 Categorical Data and the Dirichlet Discrete Distribution
 ========================================================

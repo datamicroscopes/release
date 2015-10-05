@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Network Modeling with the Infinite Relational Model</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/lumen/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="None" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          datamicroscopes</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="https://github.com/datamicroscopes">GitHub</a></li>
+                <li><a href="https://qadium.com/">Qadium</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="docs.html">Datatypes and likelihood models in datamicroscopes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html">Datatypes and Bayesian Nonparametric Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="beta-bernoulli.html">Binary Data with the Beta Bernouli Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dirichlet-discrete.html">Categorical Data and the Dirichlet Discrete Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normal-inverse-wishart.html">Real Valued Data and the Normal Inverse-Wishart Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="normal-inverse-chisquare.html">Univariate Data with the Normal Inverse Chi-Square Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docs.html#examples">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gauss2d.html">Inferring Gaussians with the Dirichlet Process Mixture Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mnist-predictions.html">Digit recognition with the MNIST dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enron-email.html">Clustering the Enron e-mail corpus using the Infinite Relational Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hdp.html">Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.dataview.html">dataviews</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.util.html">util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.random.html">microscopes.common.random</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.query.html">query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.common.validator.html">microscopes.common.validator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.parallel.html">parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.mixture.html">mixturemodel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.irm.html">irm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microscopes.kernels.html">kernels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Contents <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Network Modeling with the Infinite Relational Model</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/enron_blog.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="network-modeling-with-the-infinite-relational-model">
+<h1>Network Modeling with the Infinite Relational Model<a class="headerlink" href="#network-modeling-with-the-infinite-relational-model" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>The <a class="reference external" href="http://www.cs.cmu.edu/~./enron/">Enron e-mail corpus</a> contains 500,00 emails between 150 individuals at Enron.  To analyze the communication network, we created a binary matrix to represent email
+communication between individuals.</p>
+<p>In this matrix, <img class="math" src="_images/math/a63f5509b6863f7754ad027f05fec06ececfaa13.png" alt="X_{i,j} = 1"/> if and only if person<img class="math" src="_images/math/4ff6cb9c4b978652604dbf12fa73535acaddada5.png" alt="_{i}"/> sent an email to person<img class="math" src="_images/math/71934fc0d8b6f17a03d9be58d9cdd362b43c7007.png" alt="_{j}"/></p>
+<img alt="_images/enron-email_9_1.png" src="_images/enron-email_9_1.png" />
+<p>We&#8217;ll learn the underlying clusters in this communication matrix using the Inifinite Relational
+Model.  In this model, the underlying clusters represents groups of indiviudals in the network based on the kinds of who they email.</p>
+<p>The domain of our model is the individuals in the email dataset.</p>
+<p>Our relations are emails between individuals, both of cardinality <img class="math" src="_images/math/75e27f04188974063be3230dca208cd495b77ce1.png" alt="N"/>, and we
+model the relation with beta-bernoulli distribution since our data is
+binary</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">defn</span> <span class="o">=</span> <span class="n">model_definition</span><span class="p">([</span><span class="n">N</span><span class="p">],</span> <span class="p">[((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">beta_bernoulli</span><span class="p">)])</span>
+<span class="n">views</span> <span class="o">=</span> <span class="p">[</span><span class="n">numpy_dataview</span><span class="p">(</span><span class="n">communications_relation</span><span class="p">)]</span>
+<span class="n">prng</span> <span class="o">=</span> <span class="n">rng</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Next, let&#8217;s initialize the model and define the runners.</p>
+<p>These runners are our MCMC chains. We&#8217;ll use <code class="docutils literal"><span class="pre">cpu_count</span></code> to define our
+number of chains.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">nchains</span> <span class="o">=</span> <span class="n">cpu_count</span><span class="p">()</span>
+<span class="n">latents</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">defn</span><span class="p">,</span> <span class="n">views</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="n">prng</span><span class="p">,</span> <span class="n">cluster_hps</span><span class="o">=</span><span class="p">[{</span><span class="s">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">1e-3</span><span class="p">}])</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">nchains</span><span class="p">)]</span>
+<span class="n">kc</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">default_assign_kernel_config</span><span class="p">(</span><span class="n">defn</span><span class="p">)</span>
+<span class="n">runners</span> <span class="o">=</span> <span class="p">[</span><span class="n">runner</span><span class="o">.</span><span class="n">runner</span><span class="p">(</span><span class="n">defn</span><span class="p">,</span> <span class="n">views</span><span class="p">,</span> <span class="n">latent</span><span class="p">,</span> <span class="n">kc</span><span class="p">)</span> <span class="k">for</span> <span class="n">latent</span> <span class="ow">in</span> <span class="n">latents</span><span class="p">]</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">parallel</span><span class="o">.</span><span class="n">runner</span><span class="p">(</span><span class="n">runners</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>From here, we can finally run each chain of the sampler 1000 times</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">r</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">prng</span><span class="p">,</span> <span class="n">niters</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&quot;inference took {} seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now that we have learned our model let&#8217;s get our cluster assignments</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">infers</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get_latents</span><span class="p">()</span>
+<span class="n">clusters</span> <span class="o">=</span> <span class="n">groups</span><span class="p">(</span><span class="n">infers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">assignments</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">sort</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ordering</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span><span class="n">clusters</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Let&#8217;s sort the communications matrix to highlight our inferred clusters</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">z</span> <span class="o">=</span> <span class="n">communications_relation</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="n">ordering</span><span class="p">]</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">[:,</span><span class="n">ordering</span><span class="p">]</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span>
+<span class="n">boundaries</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">sizes</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Our model finds suspicious cluster based on the communication data.
+We&#8217;ll color and label these clusters in our communications matrix.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">cluster_with_name</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">ident</span> <span class="o">=</span> <span class="n">namemap</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clusters</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ident</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">cluster</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;could not find name&quot;</span><span class="p">)</span>
+
+<span class="n">suspicious</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">cluster_with_name</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span> <span class="s">&quot;horton-s&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;color&quot;</span><span class="p">:</span><span class="s">&quot;#66CC66&quot;</span><span class="p">,</span> <span class="s">&quot;desc&quot;</span><span class="p">:</span><span class="s">&quot;The pipeline/regulatory group&quot;</span><span class="p">}),</span>
+
+
+    <span class="n">cluster_with_name</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span> <span class="s">&quot;skilling-j&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s">&quot;color&quot;</span><span class="p">:</span><span class="s">&quot;#FF6600&quot;</span><span class="p">,</span> <span class="s">&quot;desc&quot;</span><span class="p">:</span><span class="s">&quot;The VIP/executives group&quot;</span><span class="p">}),</span>
+<span class="p">]</span>
+<span class="n">suspicious</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">suspicious</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">boundary</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">boundaries</span><span class="p">,</span> <span class="n">sizes</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">boundary</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#0066CC&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">boundary</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#0066CC&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">suspicious</span><span class="p">:</span>
+        <span class="n">rect</span> <span class="o">=</span> <span class="n">patches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="n">boundary</span><span class="o">-</span><span class="n">size</span><span class="p">,</span> <span class="n">boundary</span><span class="o">-</span><span class="n">size</span><span class="p">),</span>
+            <span class="n">width</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="n">suspicious</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s">&quot;color&quot;</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">blue_cmap</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s">&#39;auto&#39;</span><span class="p">)</span>
+<span class="nd">@savefig</span> <span class="n">email_matrix_colored</span><span class="o">.</span><span class="n">png</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="ow">in</span>
+</pre></div>
+</div>
+<img alt="_images/enron-email_21_1.png" src="_images/enron-email_21_1.png" />
+<p>We&#8217;ve identified two suspicious clusters. Let&#8217;s look at the data to find
+out who these individuals are</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">cluster_names</span><span class="p">(</span><span class="n">cluster</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">names</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">get_full_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">enron_utils</span><span class="o">.</span><span class="n">FULLNAMES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_title</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">enron_utils</span><span class="o">.</span><span class="n">TITLES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">&quot;?&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">cluster</span><span class="p">,</span> <span class="n">payload</span> <span class="ow">in</span> <span class="n">suspicious</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">cnames</span> <span class="o">=</span> <span class="n">cluster_names</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+    <span class="n">ctitles</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">get_title</span><span class="p">,</span> <span class="n">cnames</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">payload</span><span class="p">[</span><span class="s">&quot;desc&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cnames</span><span class="p">,</span> <span class="n">ctitles</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">get_full_name</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="s">&#39;</span><span class="se">\t\t</span><span class="s">&quot;{}&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">print</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>The pipeline/regulatory group
+    Lynn Blair              &quot;?&quot;
+    Shelley Corman          &quot;Vice President Regulatory Affairs&quot;
+    Lindy Donoho            &quot;Employee&quot;
+    Drew Fossum             &quot;Vice President&quot;
+    Tracy Geaccone          &quot;Employee&quot;
+    harris-s                &quot;?&quot;
+    Rod Hayslett            &quot;Vice President Also Chief Financial Officer and Treasurer&quot;
+    Stanley Horton          &quot;President Enron Gas Pipeline&quot;
+    Kevin Hyatt             &quot;Director Pipeline Business&quot;
+    Michelle Lokay          &quot;Employee Administrative Asisstant&quot;
+    Teb Lokey               &quot;Manager Regulatory Affairs&quot;
+    Danny McCarty           &quot;Vice President&quot;
+    mcconnell-m             &quot;?&quot;
+    Darrell Schoolcraft             &quot;?&quot;
+    Kimberly Watson                 &quot;?&quot;
+
+The VIP/executives group
+    Rick Buy                &quot;Manager Chief Risk Management Officer&quot;
+    Jeff Dasovich           &quot;Employee Government Relation Executive&quot;
+    David Delainey          &quot;CEO Enron North America and Enron Enery Services&quot;
+    Louise Kitchen          &quot;President Enron Online&quot;
+    John Lavorato           &quot;CEO Enron America&quot;
+    Richard Shapiro                 &quot;Vice President Regulatory Affairs&quot;
+    Jeffery Skilling                &quot;CEO&quot;
+    Barry Tycholiz          &quot;Vice President&quot;
+    Greg Whalley            &quot;President&quot;
+    williams-j              &quot;?&quot;
+</pre></div>
+</div>
+<p>Given the uncertainty behind these latent clusters, we can visualize the
+variablity within these assignments with a z-matrix.  Ordering the z-matrix allows us to group members of each possible
+cluster together.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">zmat</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">zmatrix</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">latents</span><span class="o">=</span><span class="n">infers</span><span class="p">)</span>
+<span class="n">zmat</span> <span class="o">=</span> <span class="n">zmatrix_reorder</span><span class="p">(</span><span class="n">zmat</span><span class="p">,</span> <span class="n">zmatrix_heuristic_block_ordering</span><span class="p">(</span><span class="n">zmat</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">zmat</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">blue_cmap</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;people (sorted)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;people (sorted)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Z-Matrix of IRM Cluster Assignments&#39;</span><span class="p">)</span>
+<span class="nd">@savefig</span> <span class="n">zmatrix</span><span class="o">.</span><span class="n">png</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="ow">in</span>
+</pre></div>
+</div>
+<img alt="_images/enron-email_26_1.png" src="_images/enron-email_26_1.png" />
+<p>To cluster network data using datamicroscopes, the IRM is available for installation from conda</p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015, Qadium.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

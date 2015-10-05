@@ -1,3 +1,4 @@
+.. currentmodule:: microscopes
 
 Binary Data with the Beta Bernouli Distribution
 ===============================================

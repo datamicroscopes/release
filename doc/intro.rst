@@ -1,3 +1,5 @@
+.. _intro:
+
 Discovering structure in your data: an overview of clustering
 ============================================================
 

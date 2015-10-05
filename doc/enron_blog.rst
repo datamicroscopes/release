@@ -1,3 +1,4 @@
+.. _enron_blog:
 
 Network Modeling with the Infinite Relational Model
 ============================================================================================================
@@ -176,9 +177,6 @@ cluster together.
 
 To cluster network data using datamicroscopes, the IRM is available for installation from conda
 
-.. code-block::
+.. code-block:: bash
 
     $ conda install microscopes-irm
-
-
-

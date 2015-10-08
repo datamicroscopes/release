@@ -17,10 +17,10 @@ Datatypes and likelihood models in datamicroscopes
     :maxdepth: 2
 
     datatypes
-    beta-bernoulli
-    dirichlet-discrete
-    normal-inverse-wishart
-    normal-inverse-chisquare
+    bb
+    dd
+    niw
+    nic
 
 Examples
 ==============

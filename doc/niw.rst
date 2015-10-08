@@ -1,4 +1,4 @@
-
+.. _niw:
 Real Valued Data and the Normal Inverse-Wishart Distribution
 ============================================================
 

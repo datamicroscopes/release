@@ -15,11 +15,11 @@ Let's consider the example of 2-dimensional real valued data:
 
 .. image:: sim2d.png
 
-Since the data is real valued, we'll assume the data is distributed :ref:`multivariate Gaussian <normal-inverse-wishart>`:
+Since the data is real valued, we'll assume the data is distributed :ref:`multivariate Gaussian <niw>` :
 
 .. math:: P(\mathbf{x} \mid cluster=k)\sim\mathcal{N}(\mu_{k},\Sigma_{k})
 
-As a result, we will use a Gaussian Mixture Model to learn these underlying clusters.  In a Gaussian Mixture Model, we learn the parameters of these Gaussians.   We'll select our :ref:`normal-inverse-Wishart <normal-inverse-wishart>` likelihood model since the normal-inverse-Wishart is the conjugate prior of the multivariate Gaussian distribution. With these parameters, we can estimate the probability that new data is generated from each of these :math:`K` clusters.
+As a result, we will use a Gaussian Mixture Model to learn these underlying clusters.  In a Gaussian Mixture Model, we learn the parameters of these Gaussians.   We'll select our :ref:`normal-inverse-Wishart <niw>` likelihood model since the normal-inverse-Wishart is the conjugate prior of the multivariate Gaussian distribution. With these parameters, we can estimate the probability that new data is generated from each of these :math:`K` clusters.
 
 Most clustering algorithms rely on the number of clusters to be known in advance because cluster assignments are considered categorical.  As a result, :math:`K` is assumed in advance so that the dimensionality of cluster assignments is finite.
 
@@ -92,5 +92,5 @@ Because this model was run on simulated data, we can compare the results to our 
 
 .. image:: gauss2d_files/gauss2d_8_1.png
 
-To learn more about the code that generated this example, see :ref:`Inferring Gaussians with the Dirichlet Process Mixture Model <gauss2d>`.
+To learn more about the code that generated this example, see :ref:`Inferring Gaussians with the Dirichlet Process Mixture Model <gauss2d>` .
 

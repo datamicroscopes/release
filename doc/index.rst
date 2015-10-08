@@ -8,7 +8,7 @@
 datamicroscopes: Bayesian nonparametric models in Python
 ====================
 
-datamicroscopes is a library for inference in various Bayesian nonparametric models for clustering, such as the Dirichlet Process Mixture Model (DPMM) and the Infinite Relational Model (IRM).  These models rely on the Dirichlet Process, which allow for the automatic learning of the number of clusters in a datset.  Our API allows for the flexible choice of likelihood models for various :ref:`datatypes <docs>`.
+datamicroscopes is a library for inference in Bayesian nonparametric models for clustering such as the :ref:`Dirichlet Process Mixture Model (DPMM) <gauss2d>` , :ref:`the Infinite Relational Model (IRM) <enron_email>` , and the :ref:`Hierarchichal Dirichlet Process (HDP) <hdp>` .  These models rely on the :ref:`Dirichlet Process <intro>`, which allow for the automatic learning of the number of clusters in a datset.  Additionally, our :ref:`API <api>` provides users with a flexible set of likelihood models for various :ref:`datatypes <docs>` .
 
 Please read our :ref:`introduction <intro>` for an overview of clustering.
 

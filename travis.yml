@@ -5,6 +5,7 @@ notifications:
   slack:
     secure: lWJsUXTtmQJarJdLBlBXJCkbS4ttYDaIFYtcisv81PZwkrOX2WAOzYsVYqN3T6496ANbVtFBiUHFcp6dyKMIp/GjUkrYGkTzNCmnEcJcj6fuFdDb2NvvEI4rt+qa56bwF1TquVP5BXzEnCrDFcRMqbs8TJWKtfbzWgiqVUtZbD0=
 before_install:
+- "sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng"
 - "[ ${TRAVIS_OS_NAME} == linux ] && . ./linux_prebuild.sh || echo 0"
 - "[ ${TRAVIS_OS_NAME} == osx ] && . ./osx_prebuild.sh || echo 0"
 - . ./environ_prebuild.sh

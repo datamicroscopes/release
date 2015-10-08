@@ -1,3 +1,4 @@
+.. _hdp:
 
 Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process
 ========================================================================

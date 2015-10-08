@@ -1,3 +1,4 @@
+.. _enron_email:
 
 Clustering the `Enron e-mail corpus <http://www.cs.cmu.edu/~./enron/>`__ using the Infinite Relational Model
 ============================================================================================================

@@ -41,6 +41,7 @@ Please read our :ref:`introduction <intro>` for an overview of clustering.
    dd
    niw
    nic
+   gamma_poisson
 
 .. raw:: html
 

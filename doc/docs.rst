@@ -21,6 +21,7 @@ Datatypes and likelihood models in datamicroscopes
     dd
     niw
     nic
+    gamma_poisson
 
 Examples
 ==============

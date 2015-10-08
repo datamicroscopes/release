@@ -7,19 +7,19 @@ Discovering structure in your data: an overview of clustering
 
 Clustering is a method of grouping data.  The underlying assumption in clustering is that there exists :math:`K` latent classes in the data.  The goal of clustering is to classify the observations in the data into these :math:`K` latent classes.
 
-In the Bayesian context, we assume these clusters are characterized by probability distributions conditioned on their cluster assignment.  These distributions are the likelihood of the clusters.  For examples of the kinds of distributions available for modeling, see our list of available likelihood models.
+In the Bayesian context, we assume these clusters are characterized by probability distributions conditioned on their cluster assignment.  These distributions are the likelihood of the clusters.  For examples of the kinds of distributions available for modeling, see our list of :ref:`available likelihood models <docs>`.
 
-To be specific, we assume the data is generated from a mixture of distributions.  As a result, algorithms to learn these underlying probabilistic distributions are called mxiture models 
+To be specific, we assume the data is generated from a mixture of distributions.  As a result, algorithms to learn these underlying probabilistic distributions are called mxiture models.
 
 Let's consider the example of 2-dimensional real valued data:
 
 .. image:: sim2d.png
 
-Since the data is real valued, we'll assume the data is distributed multivariate Gaussian:
+Since the data is real valued, we'll assume the data is distributed :ref:`multivariate Gaussian <niw>` :
 
-.. math:: P(\mathbf{x}|cluster=k)\sim\mathcal{N}(\mu_{k},\Sigma_{k})
+.. math:: P(\mathbf{x} \mid cluster=k)\sim\mathcal{N}(\mu_{k},\Sigma_{k})
 
-As a result, we will use a Gaussian Mixture Model to learn these underlying clusters.  In a Gaussian Mixture Model we learn the parameters of thes Gaussians.  With these parameters, we can estimate the probability that new data is generated from each of these :math:`K` clusters.
+As a result, we will use a Gaussian Mixture Model to learn these underlying clusters.  In a Gaussian Mixture Model, we learn the parameters of these Gaussians.   We'll select our :ref:`normal-inverse-Wishart <niw>` likelihood model since the normal-inverse-Wishart is the conjugate prior of the multivariate Gaussian distribution. With these parameters, we can estimate the probability that new data is generated from each of these :math:`K` clusters.
 
 Most clustering algorithms rely on the number of clusters to be known in advance because cluster assignments are considered categorical.  As a result, :math:`K` is assumed in advance so that the dimensionality of cluster assignments is finite.
 
@@ -88,9 +88,9 @@ Let's now peek again at the first state
 
 .. image:: gauss2d_files/gauss2d_20_0.png
 
-Because this model was run on simulated data, we can compare the results to our acutal underlying assignments:
+Because this model was run on simulated data, we can compare the results to our actual underlying assignments:
 
 .. image:: gauss2d_files/gauss2d_8_1.png
 
-To learn more about the code that generated this example, see Inferring Gaussians with the Dirichlet Process Mixture Model.
+To learn more about the code that generated this example, see :ref:`Inferring Gaussians with the Dirichlet Process Mixture Model <gauss2d>` .
 

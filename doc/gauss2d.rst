@@ -1,3 +1,4 @@
+.. _gauss2d:
 
 Inferring Gaussians with the Dirichlet Process Mixture Model
 ============================================================

@@ -1,3 +1,4 @@
+.. _mnist_predictions:
 
 Digit recognition with the MNIST dataset
 ========================================

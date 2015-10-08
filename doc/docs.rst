@@ -29,6 +29,6 @@ Examples
     :maxdepth: 2
 
     gauss2d
-    mnist-predictions
-    enron-email
+    mnist_predictions
+    enron_email
     hdp

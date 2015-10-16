@@ -25,8 +25,9 @@ Please read our :ref:`introduction <intro>` for an overview of clustering.
 	:maxdepth: 2
 
 	intro
+	ncluster
 	enron_blog
-	topics
+	topic
 
 .. raw:: html
 

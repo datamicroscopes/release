@@ -10,7 +10,7 @@ Tutorials
     intro
     ncluster
     enron_blog
-    topics
+    topic
 
 Datatypes and likelihood models in datamicroscopes
 ========================

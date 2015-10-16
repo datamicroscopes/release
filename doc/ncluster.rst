@@ -29,7 +29,7 @@ Plotting the data shows that indiviudal species exhibit a typical range of measu
 
 .. image:: normal-inverse-wishart_files/normal-inverse-wishart_5_0.png
 
-The dimesnionality of a clustering model is equal to the number of clusters in the model. Bayesian clustering algorithms often rely of the Dirichlet Distribution to encode prior information about these cluster assignments. The `Dirichlet
+The dimensionality of a clustering model is equal to the number of clusters in the model. Bayesian clustering algorithms often rely of the Dirichlet Distribution to encode prior information about these cluster assignments. The `Dirichlet
 distribution <https://en.wikipedia.org/wiki/Dirichlet_distribution>`__
 (DD) can be considered a distribution of distributions. Each sample from
 the DD is a `categorial
@@ -59,7 +59,7 @@ similar to :math:`H_0`. The Dirichlet process also has a parameter
 :math:`\alpha` that determines how similar how widely samples will vary
 from :math:`H_0`.
 
-When learning a culstering using a Dirichlet Process Prior, observations are probabilistically assigned to clusters based on the number of observations in that cluster :math:`n_k`.
+When learning a clustering using a Dirichlet Process Prior, observations are probabilistically assigned to clusters based on the number of observations in that cluster :math:`n_k`.
 
 .. math:: P(\text{cluster=k})=\frac{n_k}{\alpha+n-1}
 
@@ -71,7 +71,7 @@ In other words, these culsters exhbit a rich get richer property.
 
 The expected number of clusters in a dataset clustered with the Dirichlet Process is :math:`O(\alpha\log(N))`
 
-The expected number of clusters with :math:`m` observations `(Arritia et al., 2003) <https://books.google.com/books/about/Logarithmic_Combinatorial_Structures.html?id=oBPvAAAAMAAJ>`__ is :math:`\frac{\alpha}{m}`
+The expected number of clusters with :math:`m` observations `(Arratia et al., 2003) <https://books.google.com/books/about/Logarithmic_Combinatorial_Structures.html?id=oBPvAAAAMAAJ>`__ is :math:`\frac{\alpha}{m}`
 
 
 We can construct a sample :math:`H` (recall that :math:`H` is a
@@ -89,8 +89,8 @@ function <https://en.wikipedia.org/wiki/Dirac_delta_function>`__.)
 distribution* that looks similar to :math:`H_0` (also a distribution).
 In particular, :math:`H` is a *discrete* distribution that takes the
 value :math:`\theta_k` with probability :math:`\pi_k`. This sampled
-distribution :math:`H` is a discrete distribution *even if :math:`H_0`
-has continuous support*; the
+distribution :math:`H` is a discrete distribution *even if* :math:`H_0`
+*has continuous support*; the
 `support <http://www.statlect.com/glossary/support_of_a_random_variable.htm>`__
 of :math:`H` is a countably infinite subset of the support :math:`H_0`.
 

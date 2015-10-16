@@ -194,14 +194,6 @@ tool created by `Carson Sievert <https://github.com/cpsievert>`__.
     pyLDAvis.display(prepared)
 
 
-.. parsed-literal::
-
-    /Users/4d/anaconda/lib/python2.7/site-packages/skbio/stats/ordination/_principal_coordinate_analysis.py:107: RuntimeWarning: The result contains negative eigenvalues. Please compare their magnitude with the magnitude of some of the largest positive eigenvalues. If the negative ones are smaller, it's probably safe to ignore them, but if they are large in magnitude, the results won't be useful. See the Notes section for more details. The smallest eigenvalue is -1.56349705634e-05 and the largest is 0.129220486809.
-      RuntimeWarning
-
-
-
-
 .. raw:: html
 
     
@@ -247,11 +239,6 @@ tool created by `Carson Sievert <https://github.com/cpsievert>`__.
     </script>
 
 
-
-**Other Functionality**
-
-***Model Serialization***
-
 LDA ``state`` objects are fully serializable with Pickle and cPickle.
 
 .. code:: python
@@ -267,8 +254,6 @@ LDA ``state`` objects are fully serializable with Pickle and cPickle.
 .. code:: python
 
     kos_state.assignments() == new_state.assignments()
-
-
 
 
 .. parsed-literal::
@@ -307,8 +292,6 @@ LDA ``state`` objects are fully serializable with Pickle and cPickle.
 
     kos_state = new_state
 
-***Term Relevance***
-
 We can generate term relevances (as defined by `Sievert and Shirley
 2014 <http://nlp.stanford.edu/events/illvi2014/papers/sievert-illvi2014.pdf>`__)
 for each topic.
@@ -342,9 +325,6 @@ Here are the ten most relevant words for each topic:
     science scientists space environmental cell reagan emissions species cells researchers
     zimbabwe blessed kingdom heaven interpretation anchor christ cargo clip owners
     smallest demonstration located unusual zahn predebate auxiliary endangered merit googlebomb
-
-
-***Topic Prediction***
 
 We can also predict how the topics with be distributed within an
 arbitrary document.
@@ -389,18 +369,8 @@ topics.
 
 
 
-
-.. parsed-literal::
-
-    <matplotlib.text.Text at 0x12548f3d0>
-
-
-
-
 .. image:: hdp_files/hdp_28_1.png
 
-
-***Topic and Term Distributions***
 
 Of course, we can also get the topic distribution for each document
 (commonly called :math:`\Theta`).
@@ -411,14 +381,6 @@ Of course, we can also get the topic distribution for each document
     plt.xticks(pred.index, ['%d' % (d+1) for d in xrange(len(pred.index))])
     plt.xlabel('Topic Number')
     plt.ylabel('Probability of Each Topic')
-
-
-
-
-.. parsed-literal::
-
-    <matplotlib.text.Text at 0x1259e8f50>
-
 
 
 
@@ -434,14 +396,6 @@ the most common words in one of the topics.
     pd.Series(kos_state.word_distribution_by_topic()[3]).sort(inplace=False).tail(10).plot(kind='barh')
     plt.title('Top 10 Words in Topic 4')
     plt.xlabel('Probability')
-
-
-
-
-.. parsed-literal::
-
-    <matplotlib.text.Text at 0x125e2fd90>
-
 
 
 

@@ -8,6 +8,7 @@ Tutorials
     :maxdepth: 2
 
     intro
+    ncluster
     enron_blog
     topics
 

@@ -11,9 +11,10 @@ measurements from 150 flowers.
 
 .. image:: iris_unlabeled.png
 
+
 If we wanted to learn these underlying species' measurements, we would
 use these real valued measurements and make assumptions about the
-structure of the data. We could assume that conditioned on ``species``, the measurement data
+structure of the data. We could assume that conditioned on assignment to ``species``, the measurement data
 follwed a multivariate normal
 
 .. math:: P(\mathbf{x}|species=s)\sim\mathcal{N}(\mu_{s},\Sigma_{s})
@@ -60,17 +61,17 @@ from :math:`H_0`.
 
 When learning a culstering using a Dirichlet Process Prior, observations are probabilistically assigned to clusters based on the number of observations in that cluster :math:`n_k`.
 
-..:math:: P(x=\text{cluster=k})=\frac{n_k}{\alpha+n-1}
+.. math:: P(\text{cluster=k})=\frac{n_k}{\alpha+n-1}
 
 Probability of new clusters are paramteterized by :math:`\alpha`
 
-..:math:: P(x=\text{cluster=new})=\frac{\alpha}{\alpha+n-1}
+.. math:: P(\text{cluster=new})=\frac{\alpha}{\alpha+n-1}
 
 In other words, these culsters exhbit a rich get richer property.
 
 The expected number of clusters in a dataset clustered with the Dirichlet Process is :math:`O(\alpha\log(N))`
 
-The expected number of clusters with :math:`m` observations `(Arritia et al., 2003) <https://books.google.com/books/about/Logarithmic_Combinatorial_Structures.html?id=oBPvAAAAMAAJ>` is :math:`\frac{\alpha}{m}`
+The expected number of clusters with :math:`m` observations `(Arritia et al., 2003) <https://books.google.com/books/about/Logarithmic_Combinatorial_Structures.html?id=oBPvAAAAMAAJ>`__ is :math:`\frac{\alpha}{m}`
 
 
 We can construct a sample :math:`H` (recall that :math:`H` is a

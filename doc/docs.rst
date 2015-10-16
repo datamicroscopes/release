@@ -9,6 +9,7 @@ Tutorials
 
     intro
     enron_blog
+    topics
 
 Datatypes and likelihood models in datamicroscopes
 ========================

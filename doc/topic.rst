@@ -1,127 +1,16 @@
-.. _hdp:
+.. _topic:
 
-Learning Topics in The Daily Kos with the Hierarchical Dirichlet Process
+Bayesian Nonparametric Topic Modeling with the Daily Kos
 ========================================================================
 
 The Hierarchical Dirichlet Process (HDP) is typically used for topic
-modeling when the number of topics is unknown
+modeling when the number of topics is unknown and can be seen as an extension of Latent Dirichlet Allocation.
+
+n Bayesian topic modeling, individual words in each document are assigned to one of :math:`K` topics.  This means each document has its own distribution over topics and each topic has its own distribution over words.
 
 Let's explore the topics of the political blog, The Daily Kos using data
 from the `UCI Machine Learning
 Repository <http://archive.ics.uci.edu/ml/datasets/Bag+of+Words>`__.
-
-.. code:: python
-
-    import itertools
-    import pyLDAvis
-    import pandas as pd
-    import re
-    import simplejson
-    import seaborn as sns
-    
-    from microscopes.common.rng import rng
-    from microscopes.lda.definition import model_definition
-    from microscopes.lda.model import initialize
-    from microscopes.lda import model, runner
-    from random import shuffle
-    import matplotlib.pyplot as plt
-    
-    sns.set_style('darkgrid')
-    sns.set_context('talk')
-    
-    %matplotlib inline
-
-First, let's grab the data from UCI:
-
-.. code:: python
-
-    !curl http://archive.ics.uci.edu/ml/machine-learning-databases/bag-of-words/docword.kos.txt.gz | gunzip > docword.kos.txt
-    !head docword.kos.txt
-
-
-.. parsed-literal::
-
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 1029k  100 1029k    0     0   129k      0  0:00:07  0:00:07 --:--:--  243k
-    3430
-    6906
-    353160
-    1 61 2
-    1 76 1
-    1 89 1
-    1 211 1
-    1 296 1
-    1 335 1
-    1 404 1
-
-
-.. code:: python
-
-    !curl http://archive.ics.uci.edu/ml/machine-learning-databases/bag-of-words/vocab.kos.txt > vocab.kos.txt
-    !head vocab.kos.txt
-
-
-.. parsed-literal::
-
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 55467  100 55467    0     0   163k      0 --:--:-- --:--:-- --:--:--  163k
-    aarp
-    abandon
-    abandoned
-    abandoning
-    abb
-    abc
-    abcs
-    abdullah
-    ability
-    aboard
-
-
-::
-
-    The format of the docword.os.txt file is 3 header lines, followed by
-    NNZ triples:
-    ---
-    D
-    W
-    NNZ
-    docID wordID count
-    docID wordID count
-    docID wordID count
-    docID wordID count
-    ...
-    docID wordID count
-    docID wordID count
-    docID wordID count
-    ---
-
-We'll process the data into a list of lists of words ready to be fed
-into our algorithm:
-
-.. code:: python
-
-    def parse_bag_of_words_file(docword, vocab):
-        with open(vocab, "r") as f:
-            kos_vocab = [word.strip() for word in f.readlines()]
-            id_to_word = {i: word for i, word in enumerate(kos_vocab)}
-            
-        with open(docword, "r") as f:
-            raw = [map(int, _.strip().split()) for _ in f.readlines()][3:]
-    
-        docs = []
-        for _, grp in itertools.groupby(raw, lambda x: x[0]):
-            doc = []
-            for _, word_id, word_cnt in grp:
-                doc += word_cnt * [id_to_word[word_id-1]]
-            docs.append(doc)
-        return docs, id_to_word
-
-.. code:: python
-
-    docs, id_to_word = parse_bag_of_words_file("docword.kos.txt", "vocab.kos.txt")
-    vocab_size = len(set(word for doc in docs for word in doc))
 
 We must define our model before we intialize it. In this case, we need
 the number of docs and the number of words.
@@ -145,41 +34,7 @@ From there, we can initialize our model and set the hyperparameters
     number of docs: 3430 vocabulary size: 6906
 
 
-Given the size of the dataset, it'll take some time to run.
-
-We'll run our model for 1000 iterations and save our results every 25
-iterations.
-
-.. code:: python
-
-    %%time
-    step_size = 50
-    steps = 500 / step_size
-    
-    print "randomly initialized model:", "perplexity:", kos_state.perplexity(), "num topics:", kos_state.ntopics()
-    for s in range(steps):
-        r.run(prng, step_size)
-        print "iteration:", (s + 1) * step_size, "perplexity:", kos_state.perplexity(), "num topics:", kos_state.ntopics()
-
-
-.. parsed-literal::
-
-    randomly initialized model: perplexity: 6908.4715103 num topics: 9
-    iteration: 50 perplexity: 1590.22974737 num topics: 12
-    iteration: 100 perplexity: 1584.21787143 num topics: 13
-    iteration: 150 perplexity: 1578.62064887 num topics: 14
-    iteration: 200 perplexity: 1576.42299865 num topics: 15
-    iteration: 250 perplexity: 1575.98953602 num topics: 11
-    iteration: 300 perplexity: 1575.71624243 num topics: 13
-    iteration: 350 perplexity: 1575.37703244 num topics: 12
-    iteration: 400 perplexity: 1575.47578721 num topics: 13
-    iteration: 450 perplexity: 1575.69188913 num topics: 12
-    iteration: 500 perplexity: 1575.02874469 num topics: 14
-    CPU times: user 47min 46s, sys: 9.39 s, total: 47min 55s
-    Wall time: 53min 11s
-
-
-`pyLDAvis <https://github.com/bmabey/pyLDAvis>`__ is a Python
+After running our model, we can visualze our topics using pyLDAvis.  `pyLDAvis <https://github.com/bmabey/pyLDAvis>`__ is a Python
 implementation of the `LDAvis <https://github.com/cpsievert/LDAvis>`__
 tool created by `Carson Sievert <https://github.com/cpsievert>`__.
 
@@ -187,19 +42,6 @@ tool created by `Carson Sievert <https://github.com/cpsievert>`__.
     model that has been fit to a corpus of text data. The package
     extracts information from a fitted LDA topic model to inform an
     interactive web-based visualization.
-
-.. code:: python
-
-    prepared = pyLDAvis.prepare(**kos_state.pyldavis_data())
-    pyLDAvis.display(prepared)
-
-
-.. parsed-literal::
-
-    /Users/4d/anaconda/lib/python2.7/site-packages/skbio/stats/ordination/_principal_coordinate_analysis.py:107: RuntimeWarning: The result contains negative eigenvalues. Please compare their magnitude with the magnitude of some of the largest positive eigenvalues. If the negative ones are smaller, it's probably safe to ignore them, but if they are large in magnitude, the results won't be useful. See the Notes section for more details. The smallest eigenvalue is -1.56349705634e-05 and the largest is 0.129220486809.
-      RuntimeWarning
-
-
 
 
 .. raw:: html
@@ -247,84 +89,7 @@ tool created by `Carson Sievert <https://github.com/cpsievert>`__.
     </script>
 
 
-
-**Other Functionality**
-
-***Model Serialization***
-
-LDA ``state`` objects are fully serializable with Pickle and cPickle.
-
-.. code:: python
-
-    import cPickle as pickle
-    
-    with open('kos_state.pkl','wb') as f:
-        pickle.dump(kos_state, f)
-        
-    with open('kos_state.pkl','rb') as f:
-        new_state = pickle.load(f)
-
-.. code:: python
-
-    kos_state.assignments() == new_state.assignments()
-
-
-
-
-.. parsed-literal::
-
-    True
-
-
-
-.. code:: python
-
-    kos_state.dish_assignments() == new_state.dish_assignments()
-
-
-
-
-.. parsed-literal::
-
-    True
-
-
-
-.. code:: python
-
-    kos_state.table_assignments() == new_state.table_assignments()
-
-
-
-
-.. parsed-literal::
-
-    True
-
-
-
-.. code:: python
-
-    kos_state = new_state
-
-***Term Relevance***
-
-We can generate term relevances (as defined by `Sievert and Shirley
-2014 <http://nlp.stanford.edu/events/illvi2014/papers/sievert-illvi2014.pdf>`__)
-for each topic.
-
-.. code:: python
-
-    relevance = new_state.term_relevance_by_topic()
-
 Here are the ten most relevant words for each topic:
-
-.. code:: python
-
-    for topics in relevance:
-        words = [word for word, _ in topics[:10]]
-        print ' '.join(words)
-
 
 .. parsed-literal::
 
@@ -352,50 +117,14 @@ arbitrary document.
 Let's create a document from the 100 most relevant words in the 7th
 topic.
 
-.. code:: python
-
-    doc7 = [word for word, _ in relevance[6][:100]]
-    shuffle(doc7)
-    doc_text = [word for word in doc7]
-    print ' '.join(doc_text)
-
 
 .. parsed-literal::
 
     local reading party channel radio guys america dnc school ive sense hour movie times conservative ndn tnr talking coverage political heard lot air tom liberal moment discussion youre campaign learn wont bloggers heres traffic thought live speech media network isnt makes means boston weve organizations kind community blogging schaller jul readers convention night love life write news family find left read years real piece guest side event politics internet youll blogs michael long line ads dlc blog audience black stuff flag article country message journalists book blogosphere time tonight put ill email film fun people online matter blades theyre web
 
-
-.. code:: python
-
-    predictions = pd.DataFrame()
-    predictions['From Topic 7'] = pd.Series(kos_state.predict(doc, rng())[0])
-
-The prediction is that this document is mostly generated by topic 7.
-
 Similarly, if we create a document from words from the 1st and 7th
 topic, our prediction is that the document is generated mostly by those
-topics.
-
-.. code:: python
-
-    doc17 = [word for word, _ in relevance[0][:100]] + [word for word, _ in relevance[6][:100]]
-    shuffle(doc17)
-    predictions['From Topics 1 and 7']= pd.Series(kos_state.predict(doc17, r)[0])
-    predictions.plot(kind='bar')
-    plt.title('Prediced topic distribution')
-    plt.xticks(pred.index, ['%d' % (d+1) for d in xrange(len(pred.index))])
-    plt.xlabel('Topic Number')
-    plt.ylabel('Probability of Each Topic')
-
-
-
-
-.. parsed-literal::
-
-    <matplotlib.text.Text at 0x12548f3d0>
-
-
-
+topics.  We'll plot these two documents to compare their distribution over topics.
 
 .. image:: hdp_files/hdp_28_1.png
 
@@ -405,45 +134,12 @@ topics.
 Of course, we can also get the topic distribution for each document
 (commonly called :math:`\Theta`).
 
-.. code:: python
-
-    pd.Series(kos_state.topic_distribution_by_document()[0]).plot(kind='bar').set_title('Topic distribution for first document')
-    plt.xticks(pred.index, ['%d' % (d+1) for d in xrange(len(pred.index))])
-    plt.xlabel('Topic Number')
-    plt.ylabel('Probability of Each Topic')
-
-
-
-
-.. parsed-literal::
-
-    <matplotlib.text.Text at 0x1259e8f50>
-
-
-
-
 .. image:: hdp_files/hdp_31_1.png
 
 
 We can also get the raw word distribution for each topic (commonly
 called :math:`\Phi`). This is related to the *word relevance*. Here are
 the most common words in one of the topics.
-
-.. code:: python
-
-    pd.Series(kos_state.word_distribution_by_topic()[3]).sort(inplace=False).tail(10).plot(kind='barh')
-    plt.title('Top 10 Words in Topic 4')
-    plt.xlabel('Probability')
-
-
-
-
-.. parsed-literal::
-
-    <matplotlib.text.Text at 0x125e2fd90>
-
-
-
 
 .. image:: hdp_files/hdp_33_1.png
 

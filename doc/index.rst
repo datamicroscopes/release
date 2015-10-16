@@ -26,6 +26,7 @@ Please read our :ref:`introduction <intro>` for an overview of clustering.
 
 	intro
 	enron_blog
+	topics
 
 .. raw:: html
 

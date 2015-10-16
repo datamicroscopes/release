@@ -296,3 +296,5 @@ while the plots above were showing approximate *distributions samples
 from the Dirichlet process*. Of course, as the number of samples from
 each :math:`H` grows large, we would expect the histogram to be a very
 good empirical approximation of :math:`H`.
+
+For more information on the Dirichlet Process, please see our developer Tim Hopper's `additional notebooks  <https://github.com/tdhopper/notes-on-dirichlet-processes>`__.

@@ -51,7 +51,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'datamicroscopes'
-copyright = u'2015, Qadium. Datamicroscopes is developed by <a href="http://www.qadium.com">Qadium</a>, with funding from the <a href="http://www.darpa.mil">DARPA</a> <a href="http://www.darpa.mil/program/xdata">XDATA</a> program.'
+copyright = u'2015, Qadium'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

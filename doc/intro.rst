@@ -5,7 +5,7 @@ Discovering structure in your data: an overview of clustering
 
 --------------
 
-Clustering is a method of grouping data.  The underlying assumption in clustering is that there exists :math:`K` latent classes in the data.  The goal of clustering is to classify the observations in the data into these :math:`K` latent classes.
+Often a dataset can be explained by a small number of unknown groups, or clusters. These clusters can arise because there are a small number of causes of the underlying dataset. Formally, the underlying assumption in clustering is that there exists :math:`K` latent classes in the data.  The goal of clustering is to classify the observations in the data into these :math:`K` latent classes. 
 
 In the Bayesian context, we assume these clusters are characterized by probability distributions conditioned on their cluster assignment.  These distributions are the likelihood of the clusters.  For examples of the kinds of distributions available for modeling, see our list of :ref:`available likelihood models <docs>`.
 

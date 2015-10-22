@@ -9,13 +9,21 @@ Network Modeling with the Infinite Relational Model
 The `Enron e-mail corpus <http://www.cs.cmu.edu/~./enron/>`__ contains 500,00 emails between 150 individuals at Enron.  To analyze the communication network, we created a binary matrix to represent email
 communication between individuals.
 
-In this matrix, :math:`X_{i,j} = 1` if and only if person\ :math:`_{i}` sent an email to person\ :math:`_{j}`
+In this matrix, :math:`X_{i,j} = 1` if and only if person\ :math:`_{i}` sent an email to person\ :math:`_{j}` Note that we are
+only recording if an email was ever sent, not the number of emails. Thus our resulting matrix is a binary matrix. 
 
 .. image:: enron-email_files/enron-email_9_1.png
 
 
-We'll learn the underlying clusters in this communication matrix using the Inifinite Relational
-Model.  In this model, the underlying clusters represents groups of indiviudals in the network based on the kinds of who they email.
+We'd like to learn what the different classes of people are in the
+Enron dataset. Maybe some people (like salespeople) sent a lot of
+e-mails outside of the company, and some people (like HR) only sent
+e-mails to people inside of the company. Maybe some people received a
+lot of e-mail (like bosses) and others received virtually none.  We'll
+learn the underlying clusters in this communication matrix using the
+Inifinite Relational Model.  In this model, the underlying clusters
+represents groups of indiviudals in the network based on the kinds of
+who they email.
 
 The domain of our model is the individuals in the email dataset.
 
@@ -29,10 +37,8 @@ binary
     views = [numpy_dataview(communications_relation)]
     prng = rng()
 
-Next, let's initialize the model and define the runners.
-
-These runners are our MCMC chains. We'll use ``cpu_count`` to define our
-number of chains.
+We initialize our model and run a large number of samplers -- one
+per CPU core. 
 
 .. code-block:: python
 
